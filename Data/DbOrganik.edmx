@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DbProjeOrganikBesinlerPazariModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TblPazar">
+          <Key>
+            <PropertyRef Name="PazarId" />
+          </Key>
+          <Property Name="PazarId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PazarAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="PazarTuru" Type="nvarchar" MaxLength="50" />
+          <Property Name="PazarYeri" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TblUrun">
+          <Key>
+            <PropertyRef Name="UrunId" />
+          </Key>
+          <Property Name="UrunId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UrunPazariId" Type="int" />
+          <Property Name="UrunAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="UrunKategorisi" Type="nvarchar" MaxLength="50" />
+          <Property Name="UrunFiyati" Type="float" />
+        </EntityType>
+        <EntityType Name="TblUrunPazarTablosu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UrunId" Type="int" />
+          <Property Name="PazarId" Type="int" />
+        </EntityType>
+        <EntityContainer Name="DbProjeOrganikBesinlerPazariModelStoreContainer">
+          <EntitySet Name="TblPazar" EntityType="Self.TblPazar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblUrun" EntityType="Self.TblUrun" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblUrunPazarTablosu" EntityType="Self.TblUrunPazarTablosu" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbProjeOrganikBesinlerPazariModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TblPazar">
+          <Key>
+            <PropertyRef Name="PazarId" />
+          </Key>
+          <Property Name="PazarId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PazarAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PazarTuru" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PazarYeri" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TblUrun">
+          <Key>
+            <PropertyRef Name="UrunId" />
+          </Key>
+          <Property Name="UrunId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UrunPazariId" Type="Int32" />
+          <Property Name="UrunAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UrunKategorisi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UrunFiyati" Type="Double" />
+        </EntityType>
+        <EntityType Name="TblUrunPazarTablosu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UrunId" Type="Int32" />
+          <Property Name="PazarId" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="DbProjeOrganikBesinlerPazariEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TblPazar" EntityType="Self.TblPazar" />
+          <EntitySet Name="TblUrun" EntityType="Self.TblUrun" />
+          <EntitySet Name="TblUrunPazarTablosu" EntityType="Self.TblUrunPazarTablosu" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DbProjeOrganikBesinlerPazariModelStoreContainer" CdmEntityContainer="DbProjeOrganikBesinlerPazariEntities3">
+          <EntitySetMapping Name="TblPazar">
+            <EntityTypeMapping TypeName="DbProjeOrganikBesinlerPazariModel.TblPazar">
+              <MappingFragment StoreEntitySet="TblPazar">
+                <ScalarProperty Name="PazarId" ColumnName="PazarId" />
+                <ScalarProperty Name="PazarAdi" ColumnName="PazarAdi" />
+                <ScalarProperty Name="PazarTuru" ColumnName="PazarTuru" />
+                <ScalarProperty Name="PazarYeri" ColumnName="PazarYeri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblUrun">
+            <EntityTypeMapping TypeName="DbProjeOrganikBesinlerPazariModel.TblUrun">
+              <MappingFragment StoreEntitySet="TblUrun">
+                <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+                <ScalarProperty Name="UrunPazariId" ColumnName="UrunPazariId" />
+                <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+                <ScalarProperty Name="UrunKategorisi" ColumnName="UrunKategorisi" />
+                <ScalarProperty Name="UrunFiyati" ColumnName="UrunFiyati" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblUrunPazarTablosu">
+            <EntityTypeMapping TypeName="DbProjeOrganikBesinlerPazariModel.TblUrunPazarTablosu">
+              <MappingFragment StoreEntitySet="TblUrunPazarTablosu">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+                <ScalarProperty Name="PazarId" ColumnName="PazarId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

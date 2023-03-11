@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a26b887991ed40789e7923aa58b65a9b" Name="Diagram1">
+        <EntityTypeShape EntityType="DbOrganikUrunModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblAdres" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblKategori" Width="1.5" PointX="7.75" PointY="11.625" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblKisi" Width="1.5" PointX="3" PointY="3.125" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblKullanici" Width="1.5" PointX="5.25" PointY="5.625" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblPazar" Width="1.5" PointX="7.75" PointY="14.25" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblSepet" Width="1.5" PointX="5.25" PointY="1.5" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblSepetDetay" Width="1.5" PointX="7.5" PointY="1.25" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblUrun" Width="1.5" PointX="7.75" PointY="7.375" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblUrunKategori" Width="1.5" PointX="10" PointY="4.375" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblUrunPazar" Width="1.5" PointX="10" PointY="7.375" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.VwKisiKullaniciIletisim" Width="1.5" PointX="2.75" PointY="9.75" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblKisi_TblAdres" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblUrunKategori_TblKategori" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblKullanici_TblKisi" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblSepet_TblKisi" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblUrunPazar_TblPazar1" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblSepetDetay_TblSepet" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblUrunKategori_TblUrun" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblUrunPazar_TblUrun1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

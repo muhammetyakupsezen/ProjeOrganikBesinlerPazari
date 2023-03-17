@@ -13,6 +13,14 @@ namespace ProjeOrganikBesinlerPazari.Models
         public TRestClient()
         {
            // client = new RestClient();
+
+
+
+
+
+
+
+
         }
 
 

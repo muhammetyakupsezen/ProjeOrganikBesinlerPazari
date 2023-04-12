@@ -29,16 +29,33 @@ namespace YeniData
     
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TblAdres> TblAdres { get; set; }
+        public virtual DbSet<TblBirimTipleri> TblBirimTipleri { get; set; }
+        public virtual DbSet<TblDoviz> TblDoviz { get; set; }
         public virtual DbSet<TblKategori> TblKategori { get; set; }
         public virtual DbSet<TblKisi> TblKisi { get; set; }
         public virtual DbSet<TblKullanici> TblKullanici { get; set; }
+        public virtual DbSet<TblKullaniciRol> TblKullaniciRol { get; set; }
+        public virtual DbSet<TblKupon> TblKupon { get; set; }
+        public virtual DbSet<TblOdemeTipleri> TblOdemeTipleri { get; set; }
+        public virtual DbSet<TblOrder> TblOrder { get; set; }
+        public virtual DbSet<TblOrderLines> TblOrderLines { get; set; }
         public virtual DbSet<TblPazar> TblPazar { get; set; }
         public virtual DbSet<TblSepet> TblSepet { get; set; }
         public virtual DbSet<TblSepetDetay> TblSepetDetay { get; set; }
+        public virtual DbSet<TblTeslimatDurumlari> TblTeslimatDurumlari { get; set; }
         public virtual DbSet<TblUrun> TblUrun { get; set; }
+        public virtual DbSet<TblUrunFiyat> TblUrunFiyat { get; set; }
+        public virtual DbSet<TblUrunHareketleri> TblUrunHareketleri { get; set; }
         public virtual DbSet<TblUrunKategori> TblUrunKategori { get; set; }
         public virtual DbSet<TblUrunPazar> TblUrunPazar { get; set; }
+        public virtual DbSet<TblUrunStock> TblUrunStock { get; set; }
+        public virtual DbSet<VwKategorikUrunler> VwKategorikUrunler { get; set; }
         public virtual DbSet<VwKisiKullaniciIletisim> VwKisiKullaniciIletisim { get; set; }
+        public virtual DbSet<VwKisiKullaniciRoller> VwKisiKullaniciRoller { get; set; }
+        public virtual DbSet<VwKisiUye> VwKisiUye { get; set; }
+        public virtual DbSet<VwKullaniciRol> VwKullaniciRol { get; set; }
+        public virtual DbSet<VwSepetDetay> VwSepetDetay { get; set; }
+        public virtual DbSet<VwSiparisDetayUrun> VwSiparisDetayUrun { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

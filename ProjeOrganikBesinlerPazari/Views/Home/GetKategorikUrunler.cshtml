@@ -1,0 +1,62 @@
+﻿
+@model  IEnumerable<YeniData.TblKategori>
+
+
+
+@foreach (var item in Model)
+{
+
+    <div class="col-lg-6 img-banner-w3 text-center">
+        <div class="csslider infinity" id="slider1">
+            <input type="radio" name="slides" checked="checked" id="slides_1" />
+            <input type="radio" name="slides" id="slides_2" />
+            <input type="radio" name="slides" id="slides_3" />
+            <input type="radio" name="slides" id="slides_4" />
+            <ul class="banner_slide_bg">
+                <li>
+
+
+
+                    <a href="~/Home/KategorikUrunler/@item.KategoriId">
+                        <input style="margin-left: 42%; border-radius:6px;" class="btn button-style button-style-2 mt-sm-5 mt-4" type="button" name="name" value="@item.KategoriAdi" />
+
+                        <p style="padding-left: 49%; ">
+                            <img src="~/Upload/@item.img" alt="" class="img-fluid">
+                        </p>
+                    </a>
+
+
+                </li>
+                @*<li>
+                        <img src="~/web/images/2.jpg" alt="" class="img-fluid">
+                        <p style="padding-left: 49%; ">Meyveler</p><br />
+                        <input style="margin-left: 42%; border-radius:6px;" class="btn button-style button-style-2 mt-sm-5 mt-4" type="button" name="name" value="Kategoriye Git" />
+
+                    </li>
+
+                    <li>
+                        <img src="~/web/images/4.jpg" alt="" class="img-fluid">
+                        <p style="padding-left: 49%; ">Sebzeler</p><br />
+                        <input style="margin-left: 42%; border-radius:6px;" class="btn button-style button-style-2 mt-sm-5 mt-4" type="button" name="name" value="Kategoriye Git" />
+
+                    </li>
+                    <li>
+                        <img src="~/web/images/Sut2.jpg" alt="" class="img-fluid">
+                        <p style="padding-left: 49%; ">Süt Ürünleri</p><br />
+                        <input style="margin-left: 42%; border-radius:6px;" class="btn button-style button-style-2 mt-sm-5 mt-4" type="button" name="name" value="Kategoriye Git" />
+
+                    </li>*@
+            </ul>
+            @*<div class="navigation">
+                    <div>
+                        <label for="slides_1"></label>
+                        <label for="slides_2"></label>
+                        <label for="slides_3"></label>
+                        <label for="slides_4"></label>
+                    </div>
+                </div>*@
+        </div>
+    </div>
+
+
+}

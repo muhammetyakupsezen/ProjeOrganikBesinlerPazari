@@ -49,7 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseKullaniciIslemleri.cs" />
+    <Compile Include="KategoriIslemleri.cs" />
     <Compile Include="KullaniciIslemleri.cs" />
+    <Compile Include="SepetIslemleri.cs" />
     <Compile Include="UrunIslemleri.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

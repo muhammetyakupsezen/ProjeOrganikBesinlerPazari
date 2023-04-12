@@ -25,9 +25,10 @@ namespace YeniData
         public decimal GuncelKdvOrani { get; set; }
         public Nullable<decimal> GumcelDovizKuru { get; set; }
         public Nullable<double> IndirimOrani { get; set; }
-        public string KuponKodu { get; set; }
+        public int KuponId { get; set; }
         public Nullable<double> Miktar { get; set; }
     
+        public virtual TblKupon TblKupon { get; set; }
         public virtual TblSepet TblSepet { get; set; }
     }
 }

@@ -22,6 +22,8 @@ namespace YeniData
     
         public int KategoriId { get; set; }
         public string KategoriAdi { get; set; }
+        public string KategoriAciklamasi { get; set; }
+        public string img { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblUrunKategori> TblUrunKategori { get; set; }

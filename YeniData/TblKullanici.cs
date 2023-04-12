@@ -14,6 +14,12 @@ namespace YeniData
     
     public partial class TblKullanici
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TblKullanici()
+        {
+            this.TblKullaniciRol = new HashSet<TblKullaniciRol>();
+        }
+    
         public int KullaniciId { get; set; }
         public int KisiId { get; set; }
         public string KullaniciAdi { get; set; }
@@ -24,7 +30,10 @@ namespace YeniData
         public Nullable<bool> Aktif { get; set; }
         public Nullable<bool> Silik { get; set; }
         public byte[] KayitVersiyonu { get; set; }
+        public string Mesaj { get; set; }
     
         public virtual TblKisi TblKisi { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblKullaniciRol> TblKullaniciRol { get; set; }
     }
 }

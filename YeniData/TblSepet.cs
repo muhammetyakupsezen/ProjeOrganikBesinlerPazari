@@ -31,6 +31,7 @@ namespace YeniData
         public System.Guid Guid { get; set; }
     
         public virtual TblKisi TblKisi { get; set; }
+        public virtual TblOdemeTipleri TblOdemeTipleri { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblSepetDetay> TblSepetDetay { get; set; }
     }

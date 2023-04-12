@@ -1,0 +1,417 @@
+﻿<!DOCTYPE html>
+<html>
+
+@{  string VwbKullaniciAdi ="";
+
+    if (ViewBag.KullaniciAdi !=null)
+    {
+        VwbKullaniciAdi = ViewBag.KullaniciAdi;
+    }
+
+
+
+    }
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My Organik  WEP APP & API </title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @*@Scripts.Render("~/assets/css/sweetalert2.min.css")*@
+    <link rel="stylesheet" href="~/assets/css/sweetalert2.min.css">
+    <style>
+        Body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: larger;
+           /* color: cadetblue;*/
+        }
+        h1 {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: larger;
+            color: black;
+        }
+        p {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: larger;
+            color: cadetblue;
+        }
+
+
+<!--<!--.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 25px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}-->-->
+
+@*@media /*screen and (max-height: 450px) {*/
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}*@
+    </style>
+</head>
+<body>
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <h2 style="text-align:center"></h2>
+
+
+    </div>
+
+    <div id="YanMenu" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+
+            &times;
+        </a>
+        <span id="Diger" style="font-size:30px;cursor:pointer ; padding-left:210px;" onclick="closeNavInside()">
+
+            &#9776;
+        </span>
+        <a href="~/Product/Index">Ürün İşlemleri</a>
+        <a href="~/Kategori/Index">Kategori İşlemleri</a>
+        <a href="~/Order/">Sipariş İşlemleri</a>
+        <a href="~/Home/register">Üye Kaydet</a>
+
+    </div>
+
+    <div id="main">
+
+
+        <span id="Ac" style="font-size:30px;cursor:pointer ; color:black; padding-left:100px" onclick="openNav()">
+
+            &#9776; Admin Menü
+        </span>
+        <span id="Kapa" style="font-size:30px;cursor:pointer ; display:none;   " onclick="closeNav()">
+
+            &#9776; open
+        </span>
+
+        <hr />
+
+        @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>*@
+        </div>
+        <div class="container body-content">
+            <div>
+                <div class="container-fluid">
+                    <div class="header d-md-flex justify-content-between align-items-center py-sm-4 py-3 px-xl-5 px-lg-3 px-2">
+                        <!-- logo -->
+                        <div id="logo">
+                            <h1><a class="" href="index.html">Organik Besinler </a></h1>
+                        </div>
+                        <!-- //logo -->
+                        <!-- nav -->
+                        <div class="nav_w3ls">
+                            <nav>
+                                <label for="drop" class="toggle toogle-2">Menu</label>
+                                <input type="checkbox" id="drop" />
+                                <ul class="menu">
+
+                                    <li class="active"><a href="~/Home/Login"> Giriş Yap &nbsp; </a></li>
+                                    <li class="active"><a href="~/Home/Index"> Ana Sayfa</a></li>
+                                    <li class="mx-lg-4 mx-md-3 my-md-0 my-2"><a href="~/Home/About">Hakkımızda</a></li>
+                                    
+                                    <li class="mx-lg-4 mx-md-3 my-md-0 my-2">
+                                        <!-- First Tier Drop Down -->
+                                        <label for="drop-2" class="toggle">
+                                            Dropdown <span class="fa fa-angle-down" aria-hidden="true"></span>
+                                        </label>
+                                        <a href="#">Menüler <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                                        <input type="checkbox" id="drop-2" />
+                                        <ul>
+                                            <li><a href="#best" class="drop-text">Sağlıklı Ürünler</a></li>
+                                            <li><a href="#about.html" class="drop-text">Üreticiler</a></li>
+                                            <li><a href="#testi" class="drop-text">Yorumlar</a></li>
+                                            <li><a href="#newsletter" class="drop-text">Bülten</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="mx-lg-4 mx-md-3 my-md-0 my-2">
+                                        <!-- First Tier Drop Down -->
+                                        <label for="drop-2" class="toggle">
+                                            Dropdown <span class="fa fa-angle-down" aria-hidden="true"></span>
+                                        </label>
+                                        <a href="~/Home/List">Kategoriler<span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                                        <input type="checkbox" id="drop-2" />
+                                        <ul>
+                                            <li><a href="~/Home/List/2" class="drop-text">Organik Meyve</a></li>
+                                            <li><a href="~/Home/List/3" class="drop-text">Organik Sebze</a></li>
+                                            <li><a href="~/Home/List/4" class="drop-text">Organik Süt Ürünleri</a></li>
+                                            <li><a href="~/Home/List/1" class="drop-text">Organik İçecekler</a></li>
+
+                                        </ul>
+                                    </li>
+
+
+                                    <li><a href="~/Home/Contact" ">İletişim &nbsp;</a> </li>
+                                    <li><p id="LblKullaniciIsmi2">   </p> </li>
+                                    <li><p> @VwbKullaniciAdi</p>  </li>
+
+
+
+                                    @*<li><span style="border:1px solid black; border-radius:3px;"> <label id="LblUserDetailName"> </label>  </span></li>*@
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- //nav -->
+                    </div>
+                </div>
+                <div> <hr width="100%" color="black" size="4">  </div>
+                @*<input id="BtnKullaniciIsmii" type="button" style="border-radius:6px; height:45px; width:55%; margin-left :75%; " class="btn button-style mt-sm-5 mt-4" name="name" value="Hoşgeldiniz!!" />*@
+
+            </div>
+
+            @RenderBody()
+            <hr />
+
+            <section class="what-w3ls">
+                <div class="container-fluid py-xl-5 py-lg-3">
+                    <div class="offset-xl-7 offset-lg-6 offset-md-4 offset-sm-2">
+                        <div class="grids-whtas pr-xl-5">
+                            <h3 class="tittle text-wh mb-5 font-weight-bold">Organik meyve, sebze ve İçecekler </h3>
+                            <p class="lead text-li">
+                                @*@if (Model != null)
+                                {
+                                    foreach (var m in Model)
+                                    {
+                                        @m.Index()
+                                        <br />
+
+
+                                    }
+                                }*@
+
+                            </p>
+                            <hr class="my-4">
+
+                            <a href="~/Home/Index" class="btn button-style mt-sm-5 mt-4">Daha Fazla</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <footer class="py-5">
+                <div class="container pt-xl-5 pt-lg-3">
+                    <!-- newsletter -->
+                    <div class="newsletter_right_w3w3pvt-lau pb-md-5 pb-3" id="newsletter">
+                        <h2 class="tittle text-wh mb-5 font-weight-bold">Subscribe Newsletter</h2>
+                        <div class="n-right-w3ls pt-3">
+                            @*<form action="#" method="post">
+                                <div class="row">
+                                    <div class="col-md-4 form-group">
+                                        <input class="form-control" type="text" name="Name" placeholder="Name" required="">
+                                    </div>
+                                    <div class="col-md-4 form-group px-md-0">
+                                        <input class="form-control" type="email" name="Email" placeholder="Email Address" required="">
+                                    </div>
+                                    <div class="col-md-4 form-group mt-md-0 mt-3">
+                                        <button class="form-control btn text-uppercase" type="submit">Subscribe</button>
+                                    </div>
+                                </div>
+                            </form>*@
+                        </div>
+                    </div>
+                    <!-- //newsletter -->
+                    <!-- footer bottom -->
+                    <div class="row pt-xl-5 pt-lg-3">
+                        <!-- button -->
+                        <div class="col-lg-5 col-md-7 w3l-footer mt-lg-3 text-md-left text-center">
+                            <ul class="list-unstyled footer-nav-wthree">
+                                <li class="mr-4">
+                                    <a href="~/Home/Index" class="active">Home</a>
+                                </li>
+                                <li class="mr-4">
+                                    <a class="" href="~/Home/Cart">Sepet</a>
+                                </li>
+                                <li class="mr-4">
+                                    <a class="" href="~/Home/List">Gallery</a>
+                                </li>
+                                <li>
+                                    <a class="" href="~/Home/Contact">Contact Us</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- //button -->
+                        <!-- social icons -->
+                        <div class="col-lg-7 col-md-5 w3social-icons text-md-right text-center mt-md-0 mt-3">
+                            <ul>
+                                <li>
+                                    <a href="#" class="rounded-circle">
+                                        <i class="fa fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li class="px-2">
+                                    <a href="#" class="rounded-circle">
+                                        <i class="fa fa-google-plus"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="rounded-circle">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- //social icons -->
+                    </div>
+                    <!-- //footer bottom -->
+                    <!-- copyright -->
+                    <div class="row pt-lg-4 pt-3 text-md-left text-center">
+                        <p class="col-xl-7 col-lg-8 copy-right-grids mt-lg-1">
+                            © 2019 Organic Food. All Rights Reserved | Design by
+                            <a href="#" target="_blank">OBP</a>
+                        </p>
+                        <div class="col-xl-5 col-lg-4 text-center mt-lg-0 mt-4">
+                            <a href="#home" class="move-top"></a>
+                        </div>
+                    </div>
+                    <!-- //copyright -->
+                </div>
+                <p>&copy; @DateTime.Now.Year - My Organik  WEP APP & API </p>
+            </footer>
+
+
+        </div>
+
+
+        @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")*@
+        @*@RenderSection("scripts", required: false)*@
+
+
+
+        <!--<script src="~/Scripts/Js/Js/Ajax.js"></script>
+    <script src="~/Scripts/Js/Js/MyJs.js"></script>
+    <script src="~/Scripts/Js/Js/JavaScript.js"></script>-->
+        @*<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>*@
+        <!--<script src="~/Scripts/jquery-3.4.1.intellisense.js"></script>
+    <script src="~/assets/js/sweetalert2.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+
+    <script src="~/Scripts/Proje/MainJs.js"></script>-->
+
+
+
+
+
+
+        <script src="~/Scripts/bootstrap.js"></script>
+        <script src="~/Scripts/jquery-3.4.1.intellisense.js"></script>
+        <script src="~/Scripts/Js/Js/Ajax.js"></script>
+        <script src="~/Scripts/Js/Js/MyJs.js"></script>
+        <script src="~/Scripts/Js/Js/JavaScript.js"></script>
+
+
+        @*<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>*@
+        <script src="~/assets/js/sweetalert2.min.js"></script>
+        <script src="~/Scripts/jquery-3.4.1.js"></script>
+
+
+
+        <script src="~/Scripts/Proje/MainJs.js"></script>
+        @RenderSection("scripts", required: false)
+        @*<script>GetUserDetails();</script>*@
+
+        <script>
+            function openNav() {
+                document.getElementById("YanMenu").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "50px";
+                document.getElementById("Ac").style.display = "none";
+                document.getElementById("Kapa").style.display = "none";
+
+
+            }
+
+            function closeNav() {
+                document.getElementById("YanMenu").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+                document.getElementById("Kapa").style.display = "none";
+                document.getElementById("Ac").style.display = "block";
+            }
+
+            function closeNavInside() {
+                document.getElementById("YanMenu").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+                document.getElementById("Kapa").style.display = "none";
+                document.getElementById("Ac").style.display = "block";
+            }
+        </script>
+
+
+</body>
+</html>
+
+
+
+
+@*<div>
+    <p>Ürün Id Giriniz</p>
+    <br />
+    <input type="text" id="UrunId" />
+    <input type="submit" id="BtnUrunListele" onclick='UrunListele()' />
+
+    <br />
+    <p>Ürün Adı : <strong id="TxtUrunAdi"></strong> </p>
+    <p>Ürün Fiyatı : <strong id="TxtUrunFiyati"></strong> </p>
+
+
+</div>
+
+<div id="TumUrunler">
+    <input type="submit" id="BtnTumUrunListele" onclick='TumUrunListele()' value="Hepsini Getir" />
+
+</div>*@

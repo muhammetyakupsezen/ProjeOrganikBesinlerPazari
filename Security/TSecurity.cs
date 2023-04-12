@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using YeniData;
 
 namespace Security
 {
@@ -118,9 +119,57 @@ namespace Security
 
 
 
+        public static TResult ValidToken(string Token, string SecretKey, out TToken OpenToken)
+        {
+            TResult result = new TResult();
+            result.StatusCode = -1001;
+
+          bool IsValid =   DoValidToken(Token, SecretKey , out OpenToken);
+
+            result.Success = IsValid;
+            result.StatusCode = 200;
+           
+
+
+            return result;
+        }
+
+
+        public static bool DoValidToken(string Token, string SecretKey, out TToken OpenToken)
+        {
+            bool result = true;
+
+            var DecryptText = Security.TSecurity.Decrypt(Token, SecretKey);
+            string LToken = DecryptText.Replace("+", " ").Replace("_", "");
+            string[] Values = LToken.Split('|');
+
+            OpenToken = new TToken()
+            {
+                KullaniciId = Convert.ToInt32(Values[0]),
+                KisiId = Convert.ToInt32(Values[1]),
+                Tc = Convert.ToUInt32(Values[2]),
+                ExpireMinute = Convert.ToDateTime(Values[3]),
+                Guid = Guid.Parse(Values[4])
+
+
+            };
+
+            if (OpenToken != null)
+            {
+                if (DateTime.Now > OpenToken.ExpireMinute)
+                {   
+                    result = false;
+
+                }
+            }
 
 
 
+
+            return result;
+        }
+
+        
 
 
 

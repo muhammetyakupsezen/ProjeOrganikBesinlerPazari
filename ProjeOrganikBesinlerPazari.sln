@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security", "Security\Securi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestFulWebAPI", "RestFulWebAPI\RestFulWebAPI.csproj", "{33DBB3B9-A02A-4A63-8337-62AA166DBAFD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentUrunPanel", "ComponentUrunPanel\ComponentUrunPanel.csproj", "{8FB71B02-DB1A-4334-87EB-1A5E29F45FF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{33DBB3B9-A02A-4A63-8337-62AA166DBAFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33DBB3B9-A02A-4A63-8337-62AA166DBAFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33DBB3B9-A02A-4A63-8337-62AA166DBAFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FB71B02-DB1A-4334-87EB-1A5E29F45FF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FB71B02-DB1A-4334-87EB-1A5E29F45FF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FB71B02-DB1A-4334-87EB-1A5E29F45FF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FB71B02-DB1A-4334-87EB-1A5E29F45FF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

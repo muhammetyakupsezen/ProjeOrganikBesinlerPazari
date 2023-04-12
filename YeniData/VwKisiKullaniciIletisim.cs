@@ -27,6 +27,7 @@ namespace YeniData
         public byte[] KayıtVersiyonu { get; set; }
         public int KullaniciId { get; set; }
         public string KullaniciAdi { get; set; }
+        public string Mesaj { get; set; }
         public string Sifre { get; set; }
         public Nullable<System.Guid> Guid { get; set; }
         public Nullable<System.DateTime> KayitTarihi { get; set; }
@@ -34,5 +35,6 @@ namespace YeniData
         public int AdreesTabloId { get; set; }
         public string Adres { get; set; }
         public string AdresBasligi { get; set; }
+        public Nullable<bool> Admin { get; set; }
     }
 }

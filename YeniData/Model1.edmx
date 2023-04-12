@@ -20,11 +20,25 @@
             <PropertyRef Name="AdresId" />
           </Key>
           <Property Name="AdresId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UlkeAdi" Type="int" Nullable="false" />
-          <Property Name="IlAdi" Type="int" Nullable="false" />
-          <Property Name="IlceAdi" Type="int" Nullable="false" />
+          <Property Name="UlkeAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="IlAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="IlceAdi" Type="nvarchar" MaxLength="50" />
           <Property Name="AdresBasligi" Type="nvarchar" MaxLength="50" />
           <Property Name="Adres" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="TblBirimTipleri">
+          <Key>
+            <PropertyRef Name="BirimTipiId" />
+          </Key>
+          <Property Name="BirimTipiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BirimTipi" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblDoviz">
+          <Key>
+            <PropertyRef Name="DovizId" />
+          </Key>
+          <Property Name="DovizId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DovizAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TblKategori">
           <Key>
@@ -32,6 +46,8 @@
           </Key>
           <Property Name="KategoriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="KategoriAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="KategoriAciklamasi" Type="nvarchar" MaxLength="50" />
+          <Property Name="img" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="TblKisi">
           <Key>
@@ -63,6 +79,72 @@
           <Property Name="Aktif" Type="bit" />
           <Property Name="Silik" Type="bit" />
           <Property Name="KayitVersiyonu" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="Mesaj" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TblKullaniciRol">
+          <Key>
+            <PropertyRef Name="RolId" />
+          </Key>
+          <Property Name="RolId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciId" Type="int" />
+          <Property Name="Admin" Type="bit" />
+          <Property Name="Raporlama" Type="bit" />
+          <Property Name="Tahsilat" Type="bit" />
+          <Property Name="Siparis" Type="bit" />
+          <Property Name="Ayarlar" Type="bit" />
+          <Property Name="Yetkili" Type="bit" />
+        </EntityType>
+        <EntityType Name="TblKupon">
+          <Key>
+            <PropertyRef Name="KuponId" />
+          </Key>
+          <Property Name="KuponId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KuponKodu" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BaslangicTarihi" Type="datetime" Nullable="false" />
+          <Property Name="BitisTarihi" Type="datetime" Nullable="false" />
+          <Property Name="Aktif" Type="bit" />
+          <Property Name="MaksimumYararlanmaSayisi" Type="int" />
+          <Property Name="IndirimOrani" Type="float" />
+          <Property Name="IndirimliFiyat" Type="float" />
+          <Property Name="MinimumAlisverisTutari" Type="float" />
+          <Property Name="Urun" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sepet" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TblOdemeTipleri">
+          <Key>
+            <PropertyRef Name="OdemeTipiId" />
+          </Key>
+          <Property Name="OdemeTipiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OdemeTipiAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Aktif" Type="bit" />
+          <Property Name="MinimumLimit" Type="float" />
+          <Property Name="MaksimumLimit" Type="float" />
+        </EntityType>
+        <EntityType Name="TblOrder">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrderTotal" Type="float" />
+          <Property Name="OrderDate" Type="date" />
+          <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdresBasligi" Type="nvarchar" MaxLength="200" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="50" />
+          <Property Name="UlkeAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="IlAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="IlceAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="SiparisDurumu" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TblOrderLines">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="float" />
+          <Property Name="UrunId" Type="int" />
         </EntityType>
         <EntityType Name="TblPazar">
           <Key>
@@ -104,8 +186,15 @@
           <Property Name="GuncelKdvOrani" Type="numeric" Precision="18" Scale="4" Nullable="false" />
           <Property Name="GumcelDovizKuru" Type="numeric" Precision="18" Scale="4" />
           <Property Name="IndirimOrani" Type="float" />
-          <Property Name="KuponKodu" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KuponId" Type="int" Nullable="false" />
           <Property Name="Miktar" Type="float" />
+        </EntityType>
+        <EntityType Name="TblTeslimatDurumlari">
+          <Key>
+            <PropertyRef Name="DurumId" />
+          </Key>
+          <Property Name="DurumId" Type="int" Nullable="false" />
+          <Property Name="Durum" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TblUrun">
           <Key>
@@ -115,6 +204,43 @@
           <Property Name="UrunAdi" Type="nvarchar" MaxLength="50" />
           <Property Name="UrunKategorisi" Type="nvarchar" MaxLength="50" />
           <Property Name="UrunFiyati" Type="float" />
+          <Property Name="img" Type="nvarchar(max)" />
+          <Property Name="StokAdedi" Type="int" />
+          <Property Name="IsApproved" Type="bit" />
+          <Property Name="Aciklama" Type="nvarchar(max)" />
+          <Property Name="UrunNo" Type="int" />
+          <Property Name="IsExist" Type="bit" />
+          <Property Name="IsAtDiscount" Type="bit" />
+          <Property Name="Yol" Type="nvarchar(max)" />
+          <Property Name="KategoriId" Type="int" />
+        </EntityType>
+        <EntityType Name="TblUrunFiyat">
+          <Key>
+            <PropertyRef Name="FiyatId" />
+          </Key>
+          <Property Name="FiyatId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UrunId" Type="int" Nullable="false" />
+          <Property Name="DovizId" Type="int" Nullable="false" />
+          <Property Name="Fiyat" Type="float" Nullable="false" />
+          <Property Name="Indirim" Type="bit" />
+          <Property Name="KdvOrani" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblUrunHareketleri">
+          <Key>
+            <PropertyRef Name="HareketId" />
+          </Key>
+          <Property Name="HareketId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UrunId" Type="int" Nullable="false" />
+          <Property Name="KisiId" Type="int" />
+          <Property Name="DurumId" Type="int" />
+          <Property Name="DovizId" Type="int" Nullable="false" />
+          <Property Name="UyeId" Type="int" />
+          <Property Name="HareketTipiId" Type="int" Nullable="false" />
+          <Property Name="BirimTipiId" Type="int" Nullable="false" />
+          <Property Name="HareketTarihi" Type="datetime" Nullable="false" />
+          <Property Name="Miktar" Type="float" Nullable="false" />
+          <Property Name="BirimFiyati" Type="float" Nullable="false" />
+          <Property Name="DovizKuru" Type="numeric" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="TblUrunKategori">
           <Key>
@@ -131,6 +257,42 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UrunId" Type="int" />
           <Property Name="PazarId" Type="int" />
+        </EntityType>
+        <EntityType Name="TblUrunStock">
+          <Key>
+            <PropertyRef Name="StokId" />
+          </Key>
+          <Property Name="StokId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UrunId" Type="int" Nullable="false" />
+          <Property Name="BirimTipiId" Type="int" Nullable="false" />
+          <Property Name="Miktar" Type="float" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DbOrganikUrun.dbo.VwKategorikUrunler' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VwKategorikUrunler">
+          <Key>
+            <PropertyRef Name="UrunId" />
+            <PropertyRef Name="Fiyat" />
+            <PropertyRef Name="KdvOrani" />
+            <PropertyRef Name="UrunFiyatDovizId" />
+          </Key>
+          <Property Name="UrunId" Type="int" Nullable="false" />
+          <Property Name="UrunKategorisi" Type="nvarchar" MaxLength="50" />
+          <Property Name="UrunAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsApproved" Type="bit" />
+          <Property Name="IsAtDiscount" Type="bit" />
+          <Property Name="IsExist" Type="bit" />
+          <Property Name="img" Type="nvarchar(max)" />
+          <Property Name="StokAdedi" Type="int" />
+          <Property Name="UrunNo" Type="int" />
+          <Property Name="Yol" Type="nvarchar(max)" />
+          <Property Name="Fiyat" Type="float" Nullable="false" />
+          <Property Name="Indirim" Type="bit" />
+          <Property Name="KdvOrani" Type="int" Nullable="false" />
+          <Property Name="UrunFiyatDovizId" Type="int" Nullable="false" />
+          <Property Name="DovizCinsi" Type="nvarchar" MaxLength="50" />
+          <Property Name="UrunKategoriAciklamasi" Type="nvarchar" MaxLength="50" />
+          <Property Name="KategoriId" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -158,6 +320,7 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
           <Property Name="KayıtVersiyonu" Type="timestamp" StoreGeneratedPattern="Computed" />
           <Property Name="KullaniciId" Type="int" Nullable="false" />
           <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mesaj" Type="nvarchar(max)" />
           <Property Name="Sifre" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Guid" Type="uniqueidentifier" />
           <Property Name="KayitTarihi" Type="datetime" />
@@ -165,8 +328,147 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
           <Property Name="AdreesTabloId" Type="int" Nullable="false" />
           <Property Name="Adres" Type="nvarchar" MaxLength="200" />
           <Property Name="AdresBasligi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Admin" Type="bit" />
         </EntityType>
-        <Association Name="FK_TblKisi_TblAdres">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciRoller' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VwKisiKullaniciRoller">
+          <Key>
+            <PropertyRef Name="KisiId" />
+            <PropertyRef Name="Ad" />
+            <PropertyRef Name="Soyad" />
+            <PropertyRef Name="Tc" />
+          </Key>
+          <Property Name="KisiId" Type="int" Nullable="false" />
+          <Property Name="AdresId" Type="int" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Soyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tc" Type="bigint" Nullable="false" />
+          <Property Name="DogumTarihi" Type="date" />
+          <Property Name="Cinsiyet" Type="nvarchar" MaxLength="5" />
+          <Property Name="KayıtTarihi" Type="datetime" />
+          <Property Name="Aktif" Type="bit" />
+          <Property Name="Silik" Type="bit" />
+          <Property Name="KayıtVersiyonu" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="KullaniciId" Type="int" />
+          <Property Name="Guid" Type="uniqueidentifier" />
+          <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+          <Property Name="SonGirisTarihi" Type="datetime" />
+          <Property Name="KayitTarihi" Type="datetime" />
+          <Property Name="KayitVersiyonu" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="Mesaj" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiUye' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VwKisiUye">
+          <Key>
+            <PropertyRef Name="KisiId" />
+            <PropertyRef Name="Ad" />
+            <PropertyRef Name="Soyad" />
+            <PropertyRef Name="Tc" />
+            <PropertyRef Name="KullaniciAdi" />
+            <PropertyRef Name="Sifre" />
+          </Key>
+          <Property Name="KisiId" Type="int" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Soyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DogumTarihi" Type="date" />
+          <Property Name="Cinsiyet" Type="nvarchar" MaxLength="5" />
+          <Property Name="Tc" Type="bigint" Nullable="false" />
+          <Property Name="Silik" Type="bit" />
+          <Property Name="AdresId" Type="int" />
+          <Property Name="Aktif" Type="bit" />
+          <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Guid" Type="uniqueidentifier" />
+          <Property Name="SonGirisTarihi" Type="datetime" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mesaj" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DbOrganikUrun.dbo.VwKullaniciRol' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VwKullaniciRol">
+          <Key>
+            <PropertyRef Name="KullaniciAdi" />
+            <PropertyRef Name="KullaniciId" />
+            <PropertyRef Name="Sifre" />
+            <PropertyRef Name="KisiId" />
+            <PropertyRef Name="RolId" />
+          </Key>
+          <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KullaniciId" Type="int" Nullable="false" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KisiId" Type="int" Nullable="false" />
+          <Property Name="Mesaj" Type="nvarchar(max)" />
+          <Property Name="Silik" Type="bit" />
+          <Property Name="SonGirisTarihi" Type="datetime" />
+          <Property Name="KayitVersiyonu" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="Admin" Type="bit" />
+          <Property Name="Yetkili" Type="bit" />
+          <Property Name="RolId" Type="int" Nullable="false" />
+          <Property Name="Ayarlar" Type="bit" />
+          <Property Name="Siparis" Type="bit" />
+          <Property Name="Tahsilat" Type="bit" />
+          <Property Name="KullaniciTabloId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DbOrganikUrun.dbo.VwSepetDetay' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VwSepetDetay">
+          <Key>
+            <PropertyRef Name="SepetDetayId" />
+            <PropertyRef Name="SepetId" />
+            <PropertyRef Name="UrunId" />
+            <PropertyRef Name="UrunEklemeTarihi" />
+            <PropertyRef Name="Adet" />
+            <PropertyRef Name="BirimFiyat" />
+            <PropertyRef Name="GuncelBirimFiyat" />
+            <PropertyRef Name="KdvOrani" />
+            <PropertyRef Name="GuncelKdvOrani" />
+            <PropertyRef Name="KuponId" />
+          </Key>
+          <Property Name="SepetDetayId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SepetId" Type="int" Nullable="false" />
+          <Property Name="UrunId" Type="int" Nullable="false" />
+          <Property Name="UrunEklemeTarihi" Type="datetime" Nullable="false" />
+          <Property Name="Adet" Type="int" Nullable="false" />
+          <Property Name="BirimFiyat" Type="float" Nullable="false" />
+          <Property Name="GuncelBirimFiyat" Type="float" Nullable="false" />
+          <Property Name="KdvOrani" Type="int" Nullable="false" />
+          <Property Name="GuncelKdvOrani" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="GumcelDovizKuru" Type="numeric" Precision="18" Scale="4" />
+          <Property Name="IndirimOrani" Type="float" />
+          <Property Name="KuponId" Type="int" Nullable="false" />
+          <Property Name="Miktar" Type="float" />
+          <Property Name="UrunAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="AraToplam" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DbOrganikUrun.dbo.VwSiparisDetayUrun' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VwSiparisDetayUrun">
+          <Key>
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="UrunId" />
+          </Key>
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="OrderNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrderTotal" Type="float" />
+          <Property Name="OrderDate" Type="date" />
+          <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdresBasligi" Type="nvarchar" MaxLength="200" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="50" />
+          <Property Name="UlkeAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="IlAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="IlceAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="SiparisDurumu" Type="nvarchar" MaxLength="100" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="UrunId" Type="int" Nullable="false" />
+          <Property Name="UrunAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="img" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_TblKisi_TblAdres1">
           <End Role="TblAdres" Type="Self.TblAdres" Multiplicity="0..1" />
           <End Role="TblKisi" Type="Self.TblKisi" Multiplicity="*" />
           <ReferentialConstraint>
@@ -178,7 +480,7 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TblKullanici_TblKisi">
+        <Association Name="FK_TblKullanici_TblKisi1">
           <End Role="TblKisi" Type="Self.TblKisi" Multiplicity="1" />
           <End Role="TblKullanici" Type="Self.TblKullanici" Multiplicity="*" />
           <ReferentialConstraint>
@@ -190,7 +492,43 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TblSepet_TblKisi">
+        <Association Name="FK_TblKullaniciRol_TblKullanici">
+          <End Role="TblKullanici" Type="Self.TblKullanici" Multiplicity="0..1" />
+          <End Role="TblKullaniciRol" Type="Self.TblKullaniciRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblKullanici">
+              <PropertyRef Name="KullaniciId" />
+            </Principal>
+            <Dependent Role="TblKullaniciRol">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblOrderLines_TblOrder">
+          <End Role="TblOrder" Type="Self.TblOrder" Multiplicity="0..1" />
+          <End Role="TblOrderLines" Type="Self.TblOrderLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblOrder">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="TblOrderLines">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblOrderLines_TblUrun">
+          <End Role="TblUrun" Type="Self.TblUrun" Multiplicity="0..1" />
+          <End Role="TblOrderLines" Type="Self.TblOrderLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUrun">
+              <PropertyRef Name="UrunId" />
+            </Principal>
+            <Dependent Role="TblOrderLines">
+              <PropertyRef Name="UrunId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblSepet_TblKisi1">
           <End Role="TblKisi" Type="Self.TblKisi" Multiplicity="0..1" />
           <End Role="TblSepet" Type="Self.TblSepet" Multiplicity="*" />
           <ReferentialConstraint>
@@ -202,7 +540,31 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TblSepetDetay_TblSepet">
+        <Association Name="FK_TblSepet_TblOdemeTipleri">
+          <End Role="TblOdemeTipleri" Type="Self.TblOdemeTipleri" Multiplicity="0..1" />
+          <End Role="TblSepet" Type="Self.TblSepet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblOdemeTipleri">
+              <PropertyRef Name="OdemeTipiId" />
+            </Principal>
+            <Dependent Role="TblSepet">
+              <PropertyRef Name="OdemeTipiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblSepetDetay_TblKupon">
+          <End Role="TblKupon" Type="Self.TblKupon" Multiplicity="1" />
+          <End Role="TblSepetDetay" Type="Self.TblSepetDetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblKupon">
+              <PropertyRef Name="KuponId" />
+            </Principal>
+            <Dependent Role="TblSepetDetay">
+              <PropertyRef Name="KuponId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblSepetDetay_TblSepet1">
           <End Role="TblSepet" Type="Self.TblSepet" Multiplicity="1" />
           <End Role="TblSepetDetay" Type="Self.TblSepetDetay" Multiplicity="*" />
           <ReferentialConstraint>
@@ -211,6 +573,54 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
             </Principal>
             <Dependent Role="TblSepetDetay">
               <PropertyRef Name="SepetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblUrunFiyat_TblDoviz">
+          <End Role="TblDoviz" Type="Self.TblDoviz" Multiplicity="1" />
+          <End Role="TblUrunFiyat" Type="Self.TblUrunFiyat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblDoviz">
+              <PropertyRef Name="DovizId" />
+            </Principal>
+            <Dependent Role="TblUrunFiyat">
+              <PropertyRef Name="DovizId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblUrunFiyat_TblUrun">
+          <End Role="TblUrun" Type="Self.TblUrun" Multiplicity="1" />
+          <End Role="TblUrunFiyat" Type="Self.TblUrunFiyat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUrun">
+              <PropertyRef Name="UrunId" />
+            </Principal>
+            <Dependent Role="TblUrunFiyat">
+              <PropertyRef Name="UrunId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblUrunHareketleri_TblTeslimatDurumlari">
+          <End Role="TblTeslimatDurumlari" Type="Self.TblTeslimatDurumlari" Multiplicity="0..1" />
+          <End Role="TblUrunHareketleri" Type="Self.TblUrunHareketleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblTeslimatDurumlari">
+              <PropertyRef Name="DurumId" />
+            </Principal>
+            <Dependent Role="TblUrunHareketleri">
+              <PropertyRef Name="DurumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblUrunHareketleri_TblUrun">
+          <End Role="TblUrun" Type="Self.TblUrun" Multiplicity="1" />
+          <End Role="TblUrunHareketleri" Type="Self.TblUrunHareketleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUrun">
+              <PropertyRef Name="UrunId" />
+            </Principal>
+            <Dependent Role="TblUrunHareketleri">
+              <PropertyRef Name="UrunId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -262,6 +672,34 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TblUrunStock_TblBirimTipleri">
+          <End Role="TblBirimTipleri" Type="Self.TblBirimTipleri" Multiplicity="1" />
+          <End Role="TblUrunStock" Type="Self.TblUrunStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblBirimTipleri">
+              <PropertyRef Name="BirimTipiId" />
+            </Principal>
+            <Dependent Role="TblUrunStock">
+              <PropertyRef Name="BirimTipiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblUrunStock_TblUrun">
+          <End Role="TblUrun" Type="Self.TblUrun" Multiplicity="1" />
+          <End Role="TblUrunStock" Type="Self.TblUrunStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUrun">
+              <PropertyRef Name="UrunId" />
+            </Principal>
+            <Dependent Role="TblUrunStock">
+              <PropertyRef Name="UrunId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AraToplamHesabi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+          <Parameter Name="SepetDetayId" Type="int" Mode="In" />
+          <Parameter Name="Adet" Type="int" Mode="In" />
+        </Function>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -296,15 +734,47 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
         <EntityContainer Name="DbOrganikUrunModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblAdres" EntityType="Self.TblAdres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblBirimTipleri" EntityType="Self.TblBirimTipleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblDoviz" EntityType="Self.TblDoviz" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblKategori" EntityType="Self.TblKategori" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblKisi" EntityType="Self.TblKisi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblKullanici" EntityType="Self.TblKullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblKullaniciRol" EntityType="Self.TblKullaniciRol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblKupon" EntityType="Self.TblKupon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblOdemeTipleri" EntityType="Self.TblOdemeTipleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblOrder" EntityType="Self.TblOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblOrderLines" EntityType="Self.TblOrderLines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblPazar" EntityType="Self.TblPazar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblSepet" EntityType="Self.TblSepet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblSepetDetay" EntityType="Self.TblSepetDetay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblTeslimatDurumlari" EntityType="Self.TblTeslimatDurumlari" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblUrun" EntityType="Self.TblUrun" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblUrunFiyat" EntityType="Self.TblUrunFiyat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblUrunHareketleri" EntityType="Self.TblUrunHareketleri" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblUrunKategori" EntityType="Self.TblUrunKategori" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblUrunPazar" EntityType="Self.TblUrunPazar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblUrunStock" EntityType="Self.TblUrunStock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VwKategorikUrunler" EntityType="Self.VwKategorikUrunler" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VwKategorikUrunler].[UrunId] AS [UrunId], 
+    [VwKategorikUrunler].[UrunKategorisi] AS [UrunKategorisi], 
+    [VwKategorikUrunler].[UrunAdi] AS [UrunAdi], 
+    [VwKategorikUrunler].[IsApproved] AS [IsApproved], 
+    [VwKategorikUrunler].[IsAtDiscount] AS [IsAtDiscount], 
+    [VwKategorikUrunler].[IsExist] AS [IsExist], 
+    [VwKategorikUrunler].[img] AS [img], 
+    [VwKategorikUrunler].[StokAdedi] AS [StokAdedi], 
+    [VwKategorikUrunler].[UrunNo] AS [UrunNo], 
+    [VwKategorikUrunler].[Yol] AS [Yol], 
+    [VwKategorikUrunler].[Fiyat] AS [Fiyat], 
+    [VwKategorikUrunler].[Indirim] AS [Indirim], 
+    [VwKategorikUrunler].[KdvOrani] AS [KdvOrani], 
+    [VwKategorikUrunler].[UrunFiyatDovizId] AS [UrunFiyatDovizId], 
+    [VwKategorikUrunler].[DovizCinsi] AS [DovizCinsi], 
+    [VwKategorikUrunler].[UrunKategoriAciklamasi] AS [UrunKategoriAciklamasi], 
+    [VwKategorikUrunler].[KategoriId] AS [KategoriId]
+    FROM [dbo].[VwKategorikUrunler] AS [VwKategorikUrunler]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="VwKisiKullaniciIletisim" EntityType="Self.VwKisiKullaniciIletisim" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [VwKisiKullaniciIletisim].[KisiId] AS [KisiId], 
@@ -320,30 +790,168 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
     [VwKisiKullaniciIletisim].[KayıtVersiyonu] AS [KayıtVersiyonu], 
     [VwKisiKullaniciIletisim].[KullaniciId] AS [KullaniciId], 
     [VwKisiKullaniciIletisim].[KullaniciAdi] AS [KullaniciAdi], 
+    [VwKisiKullaniciIletisim].[Mesaj] AS [Mesaj], 
     [VwKisiKullaniciIletisim].[Sifre] AS [Sifre], 
     [VwKisiKullaniciIletisim].[Guid] AS [Guid], 
     [VwKisiKullaniciIletisim].[KayitTarihi] AS [KayitTarihi], 
     [VwKisiKullaniciIletisim].[SonGirisTarihi] AS [SonGirisTarihi], 
     [VwKisiKullaniciIletisim].[AdreesTabloId] AS [AdreesTabloId], 
     [VwKisiKullaniciIletisim].[Adres] AS [Adres], 
-    [VwKisiKullaniciIletisim].[AdresBasligi] AS [AdresBasligi]
+    [VwKisiKullaniciIletisim].[AdresBasligi] AS [AdresBasligi], 
+    [VwKisiKullaniciIletisim].[Admin] AS [Admin]
     FROM [dbo].[VwKisiKullaniciIletisim] AS [VwKisiKullaniciIletisim]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_TblKisi_TblAdres" Association="Self.FK_TblKisi_TblAdres">
+          <EntitySet Name="VwKisiKullaniciRoller" EntityType="Self.VwKisiKullaniciRoller" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VwKisiKullaniciRoller].[KisiId] AS [KisiId], 
+    [VwKisiKullaniciRoller].[AdresId] AS [AdresId], 
+    [VwKisiKullaniciRoller].[Ad] AS [Ad], 
+    [VwKisiKullaniciRoller].[Soyad] AS [Soyad], 
+    [VwKisiKullaniciRoller].[Tc] AS [Tc], 
+    [VwKisiKullaniciRoller].[DogumTarihi] AS [DogumTarihi], 
+    [VwKisiKullaniciRoller].[Cinsiyet] AS [Cinsiyet], 
+    [VwKisiKullaniciRoller].[KayıtTarihi] AS [KayıtTarihi], 
+    [VwKisiKullaniciRoller].[Aktif] AS [Aktif], 
+    [VwKisiKullaniciRoller].[Silik] AS [Silik], 
+    [VwKisiKullaniciRoller].[KayıtVersiyonu] AS [KayıtVersiyonu], 
+    [VwKisiKullaniciRoller].[KullaniciId] AS [KullaniciId], 
+    [VwKisiKullaniciRoller].[Guid] AS [Guid], 
+    [VwKisiKullaniciRoller].[KullaniciAdi] AS [KullaniciAdi], 
+    [VwKisiKullaniciRoller].[Sifre] AS [Sifre], 
+    [VwKisiKullaniciRoller].[SonGirisTarihi] AS [SonGirisTarihi], 
+    [VwKisiKullaniciRoller].[KayitTarihi] AS [KayitTarihi], 
+    [VwKisiKullaniciRoller].[KayitVersiyonu] AS [KayitVersiyonu], 
+    [VwKisiKullaniciRoller].[Mesaj] AS [Mesaj]
+    FROM [dbo].[VwKisiKullaniciRoller] AS [VwKisiKullaniciRoller]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VwKisiUye" EntityType="Self.VwKisiUye" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VwKisiUye].[KisiId] AS [KisiId], 
+    [VwKisiUye].[Ad] AS [Ad], 
+    [VwKisiUye].[Soyad] AS [Soyad], 
+    [VwKisiUye].[DogumTarihi] AS [DogumTarihi], 
+    [VwKisiUye].[Cinsiyet] AS [Cinsiyet], 
+    [VwKisiUye].[Tc] AS [Tc], 
+    [VwKisiUye].[Silik] AS [Silik], 
+    [VwKisiUye].[AdresId] AS [AdresId], 
+    [VwKisiUye].[Aktif] AS [Aktif], 
+    [VwKisiUye].[KullaniciAdi] AS [KullaniciAdi], 
+    [VwKisiUye].[Guid] AS [Guid], 
+    [VwKisiUye].[SonGirisTarihi] AS [SonGirisTarihi], 
+    [VwKisiUye].[Sifre] AS [Sifre], 
+    [VwKisiUye].[Mesaj] AS [Mesaj]
+    FROM [dbo].[VwKisiUye] AS [VwKisiUye]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VwKullaniciRol" EntityType="Self.VwKullaniciRol" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VwKullaniciRol].[KullaniciAdi] AS [KullaniciAdi], 
+    [VwKullaniciRol].[KullaniciId] AS [KullaniciId], 
+    [VwKullaniciRol].[Sifre] AS [Sifre], 
+    [VwKullaniciRol].[KisiId] AS [KisiId], 
+    [VwKullaniciRol].[Mesaj] AS [Mesaj], 
+    [VwKullaniciRol].[Silik] AS [Silik], 
+    [VwKullaniciRol].[SonGirisTarihi] AS [SonGirisTarihi], 
+    [VwKullaniciRol].[KayitVersiyonu] AS [KayitVersiyonu], 
+    [VwKullaniciRol].[Admin] AS [Admin], 
+    [VwKullaniciRol].[Yetkili] AS [Yetkili], 
+    [VwKullaniciRol].[RolId] AS [RolId], 
+    [VwKullaniciRol].[Ayarlar] AS [Ayarlar], 
+    [VwKullaniciRol].[Siparis] AS [Siparis], 
+    [VwKullaniciRol].[Tahsilat] AS [Tahsilat], 
+    [VwKullaniciRol].[KullaniciTabloId] AS [KullaniciTabloId]
+    FROM [dbo].[VwKullaniciRol] AS [VwKullaniciRol]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VwSepetDetay" EntityType="Self.VwSepetDetay" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VwSepetDetay].[SepetDetayId] AS [SepetDetayId], 
+    [VwSepetDetay].[SepetId] AS [SepetId], 
+    [VwSepetDetay].[UrunId] AS [UrunId], 
+    [VwSepetDetay].[UrunEklemeTarihi] AS [UrunEklemeTarihi], 
+    [VwSepetDetay].[Adet] AS [Adet], 
+    [VwSepetDetay].[BirimFiyat] AS [BirimFiyat], 
+    [VwSepetDetay].[GuncelBirimFiyat] AS [GuncelBirimFiyat], 
+    [VwSepetDetay].[KdvOrani] AS [KdvOrani], 
+    [VwSepetDetay].[GuncelKdvOrani] AS [GuncelKdvOrani], 
+    [VwSepetDetay].[GumcelDovizKuru] AS [GumcelDovizKuru], 
+    [VwSepetDetay].[IndirimOrani] AS [IndirimOrani], 
+    [VwSepetDetay].[KuponId] AS [KuponId], 
+    [VwSepetDetay].[Miktar] AS [Miktar], 
+    [VwSepetDetay].[UrunAdi] AS [UrunAdi], 
+    [VwSepetDetay].[AraToplam] AS [AraToplam]
+    FROM [dbo].[VwSepetDetay] AS [VwSepetDetay]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VwSiparisDetayUrun" EntityType="Self.VwSiparisDetayUrun" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VwSiparisDetayUrun].[OrderId] AS [OrderId], 
+    [VwSiparisDetayUrun].[OrderNumber] AS [OrderNumber], 
+    [VwSiparisDetayUrun].[OrderTotal] AS [OrderTotal], 
+    [VwSiparisDetayUrun].[OrderDate] AS [OrderDate], 
+    [VwSiparisDetayUrun].[KullaniciAdi] AS [KullaniciAdi], 
+    [VwSiparisDetayUrun].[AdresBasligi] AS [AdresBasligi], 
+    [VwSiparisDetayUrun].[Adres] AS [Adres], 
+    [VwSiparisDetayUrun].[UlkeAdi] AS [UlkeAdi], 
+    [VwSiparisDetayUrun].[IlAdi] AS [IlAdi], 
+    [VwSiparisDetayUrun].[IlceAdi] AS [IlceAdi], 
+    [VwSiparisDetayUrun].[SiparisDurumu] AS [SiparisDurumu], 
+    [VwSiparisDetayUrun].[Id] AS [Id], 
+    [VwSiparisDetayUrun].[Price] AS [Price], 
+    [VwSiparisDetayUrun].[Quantity] AS [Quantity], 
+    [VwSiparisDetayUrun].[UrunId] AS [UrunId], 
+    [VwSiparisDetayUrun].[UrunAdi] AS [UrunAdi], 
+    [VwSiparisDetayUrun].[img] AS [img]
+    FROM [dbo].[VwSiparisDetayUrun] AS [VwSiparisDetayUrun]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_TblKisi_TblAdres1" Association="Self.FK_TblKisi_TblAdres1">
             <End Role="TblAdres" EntitySet="TblAdres" />
             <End Role="TblKisi" EntitySet="TblKisi" />
           </AssociationSet>
-          <AssociationSet Name="FK_TblKullanici_TblKisi" Association="Self.FK_TblKullanici_TblKisi">
+          <AssociationSet Name="FK_TblKullanici_TblKisi1" Association="Self.FK_TblKullanici_TblKisi1">
             <End Role="TblKisi" EntitySet="TblKisi" />
             <End Role="TblKullanici" EntitySet="TblKullanici" />
           </AssociationSet>
-          <AssociationSet Name="FK_TblSepet_TblKisi" Association="Self.FK_TblSepet_TblKisi">
+          <AssociationSet Name="FK_TblKullaniciRol_TblKullanici" Association="Self.FK_TblKullaniciRol_TblKullanici">
+            <End Role="TblKullanici" EntitySet="TblKullanici" />
+            <End Role="TblKullaniciRol" EntitySet="TblKullaniciRol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblOrderLines_TblOrder" Association="Self.FK_TblOrderLines_TblOrder">
+            <End Role="TblOrder" EntitySet="TblOrder" />
+            <End Role="TblOrderLines" EntitySet="TblOrderLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblOrderLines_TblUrun" Association="Self.FK_TblOrderLines_TblUrun">
+            <End Role="TblUrun" EntitySet="TblUrun" />
+            <End Role="TblOrderLines" EntitySet="TblOrderLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblSepet_TblKisi1" Association="Self.FK_TblSepet_TblKisi1">
             <End Role="TblKisi" EntitySet="TblKisi" />
             <End Role="TblSepet" EntitySet="TblSepet" />
           </AssociationSet>
-          <AssociationSet Name="FK_TblSepetDetay_TblSepet" Association="Self.FK_TblSepetDetay_TblSepet">
+          <AssociationSet Name="FK_TblSepet_TblOdemeTipleri" Association="Self.FK_TblSepet_TblOdemeTipleri">
+            <End Role="TblOdemeTipleri" EntitySet="TblOdemeTipleri" />
+            <End Role="TblSepet" EntitySet="TblSepet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblSepetDetay_TblKupon" Association="Self.FK_TblSepetDetay_TblKupon">
+            <End Role="TblKupon" EntitySet="TblKupon" />
+            <End Role="TblSepetDetay" EntitySet="TblSepetDetay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblSepetDetay_TblSepet1" Association="Self.FK_TblSepetDetay_TblSepet1">
             <End Role="TblSepet" EntitySet="TblSepet" />
             <End Role="TblSepetDetay" EntitySet="TblSepetDetay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUrunFiyat_TblDoviz" Association="Self.FK_TblUrunFiyat_TblDoviz">
+            <End Role="TblDoviz" EntitySet="TblDoviz" />
+            <End Role="TblUrunFiyat" EntitySet="TblUrunFiyat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUrunFiyat_TblUrun" Association="Self.FK_TblUrunFiyat_TblUrun">
+            <End Role="TblUrun" EntitySet="TblUrun" />
+            <End Role="TblUrunFiyat" EntitySet="TblUrunFiyat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUrunHareketleri_TblTeslimatDurumlari" Association="Self.FK_TblUrunHareketleri_TblTeslimatDurumlari">
+            <End Role="TblTeslimatDurumlari" EntitySet="TblTeslimatDurumlari" />
+            <End Role="TblUrunHareketleri" EntitySet="TblUrunHareketleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUrunHareketleri_TblUrun" Association="Self.FK_TblUrunHareketleri_TblUrun">
+            <End Role="TblUrun" EntitySet="TblUrun" />
+            <End Role="TblUrunHareketleri" EntitySet="TblUrunHareketleri" />
           </AssociationSet>
           <AssociationSet Name="FK_TblUrunKategori_TblKategori" Association="Self.FK_TblUrunKategori_TblKategori">
             <End Role="TblKategori" EntitySet="TblKategori" />
@@ -361,56 +969,20 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
             <End Role="TblUrun" EntitySet="TblUrun" />
             <End Role="TblUrunPazar" EntitySet="TblUrunPazar" />
           </AssociationSet>
+          <AssociationSet Name="FK_TblUrunStock_TblBirimTipleri" Association="Self.FK_TblUrunStock_TblBirimTipleri">
+            <End Role="TblBirimTipleri" EntitySet="TblBirimTipleri" />
+            <End Role="TblUrunStock" EntitySet="TblUrunStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUrunStock_TblUrun" Association="Self.FK_TblUrunStock_TblUrun">
+            <End Role="TblUrun" EntitySet="TblUrun" />
+            <End Role="TblUrunStock" EntitySet="TblUrunStock" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DbOrganikUrunModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DbOrganikUrunEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="sysdiagrams" EntityType="DbOrganikUrunModel.sysdiagrams" />
-          <EntitySet Name="TblAdres" EntityType="DbOrganikUrunModel.TblAdres" />
-          <EntitySet Name="TblKategori" EntityType="DbOrganikUrunModel.TblKategori" />
-          <EntitySet Name="TblKisi" EntityType="DbOrganikUrunModel.TblKisi" />
-          <EntitySet Name="TblKullanici" EntityType="DbOrganikUrunModel.TblKullanici" />
-          <EntitySet Name="TblPazar" EntityType="DbOrganikUrunModel.TblPazar" />
-          <EntitySet Name="TblSepet" EntityType="DbOrganikUrunModel.TblSepet" />
-          <EntitySet Name="TblSepetDetay" EntityType="DbOrganikUrunModel.TblSepetDetay" />
-          <EntitySet Name="TblUrun" EntityType="DbOrganikUrunModel.TblUrun" />
-          <EntitySet Name="TblUrunKategori" EntityType="DbOrganikUrunModel.TblUrunKategori" />
-          <EntitySet Name="TblUrunPazar" EntityType="DbOrganikUrunModel.TblUrunPazar" />
-          <EntitySet Name="VwKisiKullaniciIletisim" EntityType="DbOrganikUrunModel.VwKisiKullaniciIletisim" />
-          <AssociationSet Name="FK_TblKisi_TblAdres" Association="DbOrganikUrunModel.FK_TblKisi_TblAdres">
-            <End Role="TblAdres" EntitySet="TblAdres" />
-            <End Role="TblKisi" EntitySet="TblKisi" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TblUrunKategori_TblKategori" Association="DbOrganikUrunModel.FK_TblUrunKategori_TblKategori">
-            <End Role="TblKategori" EntitySet="TblKategori" />
-            <End Role="TblUrunKategori" EntitySet="TblUrunKategori" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TblKullanici_TblKisi" Association="DbOrganikUrunModel.FK_TblKullanici_TblKisi">
-            <End Role="TblKisi" EntitySet="TblKisi" />
-            <End Role="TblKullanici" EntitySet="TblKullanici" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TblSepet_TblKisi" Association="DbOrganikUrunModel.FK_TblSepet_TblKisi">
-            <End Role="TblKisi" EntitySet="TblKisi" />
-            <End Role="TblSepet" EntitySet="TblSepet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TblUrunPazar_TblPazar1" Association="DbOrganikUrunModel.FK_TblUrunPazar_TblPazar1">
-            <End Role="TblPazar" EntitySet="TblPazar" />
-            <End Role="TblUrunPazar" EntitySet="TblUrunPazar" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TblSepetDetay_TblSepet" Association="DbOrganikUrunModel.FK_TblSepetDetay_TblSepet">
-            <End Role="TblSepet" EntitySet="TblSepet" />
-            <End Role="TblSepetDetay" EntitySet="TblSepetDetay" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TblUrunKategori_TblUrun" Association="DbOrganikUrunModel.FK_TblUrunKategori_TblUrun">
-            <End Role="TblUrun" EntitySet="TblUrun" />
-            <End Role="TblUrunKategori" EntitySet="TblUrunKategori" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TblUrunPazar_TblUrun1" Association="DbOrganikUrunModel.FK_TblUrunPazar_TblUrun1">
-            <End Role="TblUrun" EntitySet="TblUrun" />
-            <End Role="TblUrunPazar" EntitySet="TblUrunPazar" />
-          </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -441,7 +1013,123 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-        </EntityContainer>
+          <EntitySet Name="sysdiagrams" EntityType="DbOrganikUrunModel.sysdiagrams" />
+          <EntitySet Name="TblAdres" EntityType="DbOrganikUrunModel.TblAdres" />
+          <EntitySet Name="TblBirimTipleri" EntityType="DbOrganikUrunModel.TblBirimTipleri" />
+          <EntitySet Name="TblDoviz" EntityType="DbOrganikUrunModel.TblDoviz" />
+          <EntitySet Name="TblKategori" EntityType="DbOrganikUrunModel.TblKategori" />
+          <EntitySet Name="TblKisi" EntityType="DbOrganikUrunModel.TblKisi" />
+          <EntitySet Name="TblKullanici" EntityType="DbOrganikUrunModel.TblKullanici" />
+          <EntitySet Name="TblKullaniciRol" EntityType="DbOrganikUrunModel.TblKullaniciRol" />
+          <EntitySet Name="TblKupon" EntityType="DbOrganikUrunModel.TblKupon" />
+          <EntitySet Name="TblOdemeTipleri" EntityType="DbOrganikUrunModel.TblOdemeTipleri" />
+          <EntitySet Name="TblOrder" EntityType="DbOrganikUrunModel.TblOrder" />
+          <EntitySet Name="TblOrderLines" EntityType="DbOrganikUrunModel.TblOrderLines" />
+          <EntitySet Name="TblPazar" EntityType="DbOrganikUrunModel.TblPazar" />
+          <EntitySet Name="TblSepet" EntityType="DbOrganikUrunModel.TblSepet" />
+          <EntitySet Name="TblSepetDetay" EntityType="DbOrganikUrunModel.TblSepetDetay" />
+          <EntitySet Name="TblTeslimatDurumlari" EntityType="DbOrganikUrunModel.TblTeslimatDurumlari" />
+          <EntitySet Name="TblUrun" EntityType="DbOrganikUrunModel.TblUrun" />
+          <EntitySet Name="TblUrunFiyat" EntityType="DbOrganikUrunModel.TblUrunFiyat" />
+          <EntitySet Name="TblUrunHareketleri" EntityType="DbOrganikUrunModel.TblUrunHareketleri" />
+          <EntitySet Name="TblUrunKategori" EntityType="DbOrganikUrunModel.TblUrunKategori" />
+          <EntitySet Name="TblUrunPazar" EntityType="DbOrganikUrunModel.TblUrunPazar" />
+          <EntitySet Name="TblUrunStock" EntityType="DbOrganikUrunModel.TblUrunStock" />
+          <EntitySet Name="VwKategorikUrunler" EntityType="DbOrganikUrunModel.VwKategorikUrunler" />
+          <EntitySet Name="VwKisiKullaniciIletisim" EntityType="DbOrganikUrunModel.VwKisiKullaniciIletisim" />
+          <EntitySet Name="VwKisiKullaniciRoller" EntityType="DbOrganikUrunModel.VwKisiKullaniciRoller" />
+          <EntitySet Name="VwKisiUye" EntityType="DbOrganikUrunModel.VwKisiUye" />
+          <EntitySet Name="VwKullaniciRol" EntityType="DbOrganikUrunModel.VwKullaniciRol" />
+          <EntitySet Name="VwSepetDetay" EntityType="DbOrganikUrunModel.VwSepetDetay" />
+          <AssociationSet Name="FK_TblKisi_TblAdres1" Association="DbOrganikUrunModel.FK_TblKisi_TblAdres1">
+            <End Role="TblAdres" EntitySet="TblAdres" />
+            <End Role="TblKisi" EntitySet="TblKisi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUrunStock_TblBirimTipleri" Association="DbOrganikUrunModel.FK_TblUrunStock_TblBirimTipleri">
+            <End Role="TblBirimTipleri" EntitySet="TblBirimTipleri" />
+            <End Role="TblUrunStock" EntitySet="TblUrunStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUrunFiyat_TblDoviz" Association="DbOrganikUrunModel.FK_TblUrunFiyat_TblDoviz">
+            <End Role="TblDoviz" EntitySet="TblDoviz" />
+            <End Role="TblUrunFiyat" EntitySet="TblUrunFiyat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUrunKategori_TblKategori" Association="DbOrganikUrunModel.FK_TblUrunKategori_TblKategori">
+            <End Role="TblKategori" EntitySet="TblKategori" />
+            <End Role="TblUrunKategori" EntitySet="TblUrunKategori" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblKullanici_TblKisi1" Association="DbOrganikUrunModel.FK_TblKullanici_TblKisi1">
+            <End Role="TblKisi" EntitySet="TblKisi" />
+            <End Role="TblKullanici" EntitySet="TblKullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblSepet_TblKisi1" Association="DbOrganikUrunModel.FK_TblSepet_TblKisi1">
+            <End Role="TblKisi" EntitySet="TblKisi" />
+            <End Role="TblSepet" EntitySet="TblSepet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblKullaniciRol_TblKullanici" Association="DbOrganikUrunModel.FK_TblKullaniciRol_TblKullanici">
+            <End Role="TblKullanici" EntitySet="TblKullanici" />
+            <End Role="TblKullaniciRol" EntitySet="TblKullaniciRol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblSepetDetay_TblKupon" Association="DbOrganikUrunModel.FK_TblSepetDetay_TblKupon">
+            <End Role="TblKupon" EntitySet="TblKupon" />
+            <End Role="TblSepetDetay" EntitySet="TblSepetDetay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblSepet_TblOdemeTipleri" Association="DbOrganikUrunModel.FK_TblSepet_TblOdemeTipleri">
+            <End Role="TblOdemeTipleri" EntitySet="TblOdemeTipleri" />
+            <End Role="TblSepet" EntitySet="TblSepet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblOrderLines_TblOrder" Association="DbOrganikUrunModel.FK_TblOrderLines_TblOrder">
+            <End Role="TblOrder" EntitySet="TblOrder" />
+            <End Role="TblOrderLines" EntitySet="TblOrderLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblOrderLines_TblUrun" Association="DbOrganikUrunModel.FK_TblOrderLines_TblUrun">
+            <End Role="TblUrun" EntitySet="TblUrun" />
+            <End Role="TblOrderLines" EntitySet="TblOrderLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUrunPazar_TblPazar1" Association="DbOrganikUrunModel.FK_TblUrunPazar_TblPazar1">
+            <End Role="TblPazar" EntitySet="TblPazar" />
+            <End Role="TblUrunPazar" EntitySet="TblUrunPazar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblSepetDetay_TblSepet1" Association="DbOrganikUrunModel.FK_TblSepetDetay_TblSepet1">
+            <End Role="TblSepet" EntitySet="TblSepet" />
+            <End Role="TblSepetDetay" EntitySet="TblSepetDetay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUrunHareketleri_TblTeslimatDurumlari" Association="DbOrganikUrunModel.FK_TblUrunHareketleri_TblTeslimatDurumlari">
+            <End Role="TblTeslimatDurumlari" EntitySet="TblTeslimatDurumlari" />
+            <End Role="TblUrunHareketleri" EntitySet="TblUrunHareketleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUrunFiyat_TblUrun" Association="DbOrganikUrunModel.FK_TblUrunFiyat_TblUrun">
+            <End Role="TblUrun" EntitySet="TblUrun" />
+            <End Role="TblUrunFiyat" EntitySet="TblUrunFiyat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUrunHareketleri_TblUrun" Association="DbOrganikUrunModel.FK_TblUrunHareketleri_TblUrun">
+            <End Role="TblUrun" EntitySet="TblUrun" />
+            <End Role="TblUrunHareketleri" EntitySet="TblUrunHareketleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUrunKategori_TblUrun" Association="DbOrganikUrunModel.FK_TblUrunKategori_TblUrun">
+            <End Role="TblUrun" EntitySet="TblUrun" />
+            <End Role="TblUrunKategori" EntitySet="TblUrunKategori" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUrunPazar_TblUrun1" Association="DbOrganikUrunModel.FK_TblUrunPazar_TblUrun1">
+            <End Role="TblUrun" EntitySet="TblUrun" />
+            <End Role="TblUrunPazar" EntitySet="TblUrunPazar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUrunStock_TblUrun" Association="DbOrganikUrunModel.FK_TblUrunStock_TblUrun">
+            <End Role="TblUrun" EntitySet="TblUrun" />
+            <End Role="TblUrunStock" EntitySet="TblUrunStock" />
+          </AssociationSet>
+          <EntitySet Name="VwSiparisDetayUrun" EntityType="DbOrganikUrunModel.VwSiparisDetayUrun" />
+          </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -457,12 +1145,28 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
             <PropertyRef Name="AdresId" />
           </Key>
           <Property Name="AdresId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UlkeAdi" Type="Int32" Nullable="false" />
-          <Property Name="IlAdi" Type="Int32" Nullable="false" />
-          <Property Name="IlceAdi" Type="Int32" Nullable="false" />
+          <Property Name="UlkeAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IlAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IlceAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AdresBasligi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Adres" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TblKisi" Relationship="DbOrganikUrunModel.FK_TblKisi_TblAdres" FromRole="TblAdres" ToRole="TblKisi" />
+          <NavigationProperty Name="TblKisi" Relationship="DbOrganikUrunModel.FK_TblKisi_TblAdres1" FromRole="TblAdres" ToRole="TblKisi" />
+        </EntityType>
+        <EntityType Name="TblBirimTipleri">
+          <Key>
+            <PropertyRef Name="BirimTipiId" />
+          </Key>
+          <Property Name="BirimTipiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BirimTipi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TblUrunStock" Relationship="DbOrganikUrunModel.FK_TblUrunStock_TblBirimTipleri" FromRole="TblBirimTipleri" ToRole="TblUrunStock" />
+        </EntityType>
+        <EntityType Name="TblDoviz">
+          <Key>
+            <PropertyRef Name="DovizId" />
+          </Key>
+          <Property Name="DovizId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DovizAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TblUrunFiyat" Relationship="DbOrganikUrunModel.FK_TblUrunFiyat_TblDoviz" FromRole="TblDoviz" ToRole="TblUrunFiyat" />
         </EntityType>
         <EntityType Name="TblKategori">
           <Key>
@@ -470,6 +1174,8 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
           </Key>
           <Property Name="KategoriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="KategoriAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KategoriAciklamasi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TblUrunKategori" Relationship="DbOrganikUrunModel.FK_TblUrunKategori_TblKategori" FromRole="TblKategori" ToRole="TblUrunKategori" />
         </EntityType>
         <EntityType Name="TblKisi">
@@ -487,9 +1193,9 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
           <Property Name="Aktif" Type="Boolean" />
           <Property Name="Silik" Type="Boolean" />
           <Property Name="KayıtVersiyonu" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="TblAdres" Relationship="DbOrganikUrunModel.FK_TblKisi_TblAdres" FromRole="TblKisi" ToRole="TblAdres" />
-          <NavigationProperty Name="TblKullanici" Relationship="DbOrganikUrunModel.FK_TblKullanici_TblKisi" FromRole="TblKisi" ToRole="TblKullanici" />
-          <NavigationProperty Name="TblSepet" Relationship="DbOrganikUrunModel.FK_TblSepet_TblKisi" FromRole="TblKisi" ToRole="TblSepet" />
+          <NavigationProperty Name="TblAdres" Relationship="DbOrganikUrunModel.FK_TblKisi_TblAdres1" FromRole="TblKisi" ToRole="TblAdres" />
+          <NavigationProperty Name="TblKullanici" Relationship="DbOrganikUrunModel.FK_TblKullanici_TblKisi1" FromRole="TblKisi" ToRole="TblKullanici" />
+          <NavigationProperty Name="TblSepet" Relationship="DbOrganikUrunModel.FK_TblSepet_TblKisi1" FromRole="TblKisi" ToRole="TblSepet" />
         </EntityType>
         <EntityType Name="TblKullanici">
           <Key>
@@ -505,7 +1211,80 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
           <Property Name="Aktif" Type="Boolean" />
           <Property Name="Silik" Type="Boolean" />
           <Property Name="KayitVersiyonu" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="TblKisi" Relationship="DbOrganikUrunModel.FK_TblKullanici_TblKisi" FromRole="TblKullanici" ToRole="TblKisi" />
+          <Property Name="Mesaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TblKisi" Relationship="DbOrganikUrunModel.FK_TblKullanici_TblKisi1" FromRole="TblKullanici" ToRole="TblKisi" />
+          <NavigationProperty Name="TblKullaniciRol" Relationship="DbOrganikUrunModel.FK_TblKullaniciRol_TblKullanici" FromRole="TblKullanici" ToRole="TblKullaniciRol" />
+        </EntityType>
+        <EntityType Name="TblKullaniciRol">
+          <Key>
+            <PropertyRef Name="RolId" />
+          </Key>
+          <Property Name="RolId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciId" Type="Int32" />
+          <Property Name="Admin" Type="Boolean" />
+          <Property Name="Raporlama" Type="Boolean" />
+          <Property Name="Tahsilat" Type="Boolean" />
+          <Property Name="Siparis" Type="Boolean" />
+          <Property Name="Ayarlar" Type="Boolean" />
+          <Property Name="Yetkili" Type="Boolean" />
+          <NavigationProperty Name="TblKullanici" Relationship="DbOrganikUrunModel.FK_TblKullaniciRol_TblKullanici" FromRole="TblKullaniciRol" ToRole="TblKullanici" />
+        </EntityType>
+        <EntityType Name="TblKupon">
+          <Key>
+            <PropertyRef Name="KuponId" />
+          </Key>
+          <Property Name="KuponId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KuponKodu" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BaslangicTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BitisTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Aktif" Type="Boolean" />
+          <Property Name="MaksimumYararlanmaSayisi" Type="Int32" />
+          <Property Name="IndirimOrani" Type="Double" />
+          <Property Name="IndirimliFiyat" Type="Double" />
+          <Property Name="MinimumAlisverisTutari" Type="Double" />
+          <Property Name="Urun" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sepet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TblSepetDetay" Relationship="DbOrganikUrunModel.FK_TblSepetDetay_TblKupon" FromRole="TblKupon" ToRole="TblSepetDetay" />
+        </EntityType>
+        <EntityType Name="TblOdemeTipleri">
+          <Key>
+            <PropertyRef Name="OdemeTipiId" />
+          </Key>
+          <Property Name="OdemeTipiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OdemeTipiAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Aktif" Type="Boolean" />
+          <Property Name="MinimumLimit" Type="Double" />
+          <Property Name="MaksimumLimit" Type="Double" />
+          <NavigationProperty Name="TblSepet" Relationship="DbOrganikUrunModel.FK_TblSepet_TblOdemeTipleri" FromRole="TblOdemeTipleri" ToRole="TblSepet" />
+        </EntityType>
+        <EntityType Name="TblOrder">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderTotal" Type="Double" />
+          <Property Name="OrderDate" Type="DateTime" Precision="0" />
+          <Property Name="KullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdresBasligi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UlkeAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IlAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IlceAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TblOrderLines" Relationship="DbOrganikUrunModel.FK_TblOrderLines_TblOrder" FromRole="TblOrder" ToRole="TblOrderLines" />
+          <Property Name="SiparisDurumu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TblOrderLines">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="UrunId" Type="Int32" />
+          <NavigationProperty Name="TblOrder" Relationship="DbOrganikUrunModel.FK_TblOrderLines_TblOrder" FromRole="TblOrderLines" ToRole="TblOrder" />
+          <NavigationProperty Name="TblUrun" Relationship="DbOrganikUrunModel.FK_TblOrderLines_TblUrun" FromRole="TblOrderLines" ToRole="TblUrun" />
         </EntityType>
         <EntityType Name="TblPazar">
           <Key>
@@ -532,8 +1311,9 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
           <Property Name="TeslimatDurumu" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="OturumNo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Guid" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="TblKisi" Relationship="DbOrganikUrunModel.FK_TblSepet_TblKisi" FromRole="TblSepet" ToRole="TblKisi" />
-          <NavigationProperty Name="TblSepetDetay" Relationship="DbOrganikUrunModel.FK_TblSepetDetay_TblSepet" FromRole="TblSepet" ToRole="TblSepetDetay" />
+          <NavigationProperty Name="TblKisi" Relationship="DbOrganikUrunModel.FK_TblSepet_TblKisi1" FromRole="TblSepet" ToRole="TblKisi" />
+          <NavigationProperty Name="TblOdemeTipleri" Relationship="DbOrganikUrunModel.FK_TblSepet_TblOdemeTipleri" FromRole="TblSepet" ToRole="TblOdemeTipleri" />
+          <NavigationProperty Name="TblSepetDetay" Relationship="DbOrganikUrunModel.FK_TblSepetDetay_TblSepet1" FromRole="TblSepet" ToRole="TblSepetDetay" />
         </EntityType>
         <EntityType Name="TblSepetDetay">
           <Key>
@@ -550,9 +1330,18 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
           <Property Name="GuncelKdvOrani" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
           <Property Name="GumcelDovizKuru" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="IndirimOrani" Type="Double" />
-          <Property Name="KuponKodu" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KuponId" Type="Int32" Nullable="false" />
           <Property Name="Miktar" Type="Double" />
-          <NavigationProperty Name="TblSepet" Relationship="DbOrganikUrunModel.FK_TblSepetDetay_TblSepet" FromRole="TblSepetDetay" ToRole="TblSepet" />
+          <NavigationProperty Name="TblKupon" Relationship="DbOrganikUrunModel.FK_TblSepetDetay_TblKupon" FromRole="TblSepetDetay" ToRole="TblKupon" />
+          <NavigationProperty Name="TblSepet" Relationship="DbOrganikUrunModel.FK_TblSepetDetay_TblSepet1" FromRole="TblSepetDetay" ToRole="TblSepet" />
+        </EntityType>
+        <EntityType Name="TblTeslimatDurumlari">
+          <Key>
+            <PropertyRef Name="DurumId" />
+          </Key>
+          <Property Name="DurumId" Type="Int32" Nullable="false" />
+          <Property Name="Durum" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TblUrunHareketleri" Relationship="DbOrganikUrunModel.FK_TblUrunHareketleri_TblTeslimatDurumlari" FromRole="TblTeslimatDurumlari" ToRole="TblUrunHareketleri" />
         </EntityType>
         <EntityType Name="TblUrun">
           <Key>
@@ -562,8 +1351,53 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
           <Property Name="UrunAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UrunKategorisi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UrunFiyati" Type="Double" />
+          <Property Name="img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StokAdedi" Type="Int32" />
+          <Property Name="IsApproved" Type="Boolean" />
+          <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UrunNo" Type="Int32" />
+          <Property Name="IsExist" Type="Boolean" />
+          <Property Name="IsAtDiscount" Type="Boolean" />
+          <Property Name="Yol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KategoriId" Type="Int32" />
+          <NavigationProperty Name="TblOrderLines" Relationship="DbOrganikUrunModel.FK_TblOrderLines_TblUrun" FromRole="TblUrun" ToRole="TblOrderLines" />
+          <NavigationProperty Name="TblUrunFiyat" Relationship="DbOrganikUrunModel.FK_TblUrunFiyat_TblUrun" FromRole="TblUrun" ToRole="TblUrunFiyat" />
+          <NavigationProperty Name="TblUrunHareketleri" Relationship="DbOrganikUrunModel.FK_TblUrunHareketleri_TblUrun" FromRole="TblUrun" ToRole="TblUrunHareketleri" />
           <NavigationProperty Name="TblUrunKategori" Relationship="DbOrganikUrunModel.FK_TblUrunKategori_TblUrun" FromRole="TblUrun" ToRole="TblUrunKategori" />
           <NavigationProperty Name="TblUrunPazar" Relationship="DbOrganikUrunModel.FK_TblUrunPazar_TblUrun1" FromRole="TblUrun" ToRole="TblUrunPazar" />
+          <NavigationProperty Name="TblUrunStock" Relationship="DbOrganikUrunModel.FK_TblUrunStock_TblUrun" FromRole="TblUrun" ToRole="TblUrunStock" />
+        </EntityType>
+        <EntityType Name="TblUrunFiyat">
+          <Key>
+            <PropertyRef Name="FiyatId" />
+          </Key>
+          <Property Name="FiyatId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UrunId" Type="Int32" Nullable="false" />
+          <Property Name="DovizId" Type="Int32" Nullable="false" />
+          <Property Name="Fiyat" Type="Double" Nullable="false" />
+          <Property Name="Indirim" Type="Boolean" />
+          <Property Name="KdvOrani" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TblDoviz" Relationship="DbOrganikUrunModel.FK_TblUrunFiyat_TblDoviz" FromRole="TblUrunFiyat" ToRole="TblDoviz" />
+          <NavigationProperty Name="TblUrun" Relationship="DbOrganikUrunModel.FK_TblUrunFiyat_TblUrun" FromRole="TblUrunFiyat" ToRole="TblUrun" />
+        </EntityType>
+        <EntityType Name="TblUrunHareketleri">
+          <Key>
+            <PropertyRef Name="HareketId" />
+          </Key>
+          <Property Name="HareketId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UrunId" Type="Int32" Nullable="false" />
+          <Property Name="KisiId" Type="Int32" />
+          <Property Name="DurumId" Type="Int32" />
+          <Property Name="DovizId" Type="Int32" Nullable="false" />
+          <Property Name="UyeId" Type="Int32" />
+          <Property Name="HareketTipiId" Type="Int32" Nullable="false" />
+          <Property Name="BirimTipiId" Type="Int32" Nullable="false" />
+          <Property Name="HareketTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Miktar" Type="Double" Nullable="false" />
+          <Property Name="BirimFiyati" Type="Double" Nullable="false" />
+          <Property Name="DovizKuru" Type="Decimal" Precision="18" Scale="4" />
+          <NavigationProperty Name="TblTeslimatDurumlari" Relationship="DbOrganikUrunModel.FK_TblUrunHareketleri_TblTeslimatDurumlari" FromRole="TblUrunHareketleri" ToRole="TblTeslimatDurumlari" />
+          <NavigationProperty Name="TblUrun" Relationship="DbOrganikUrunModel.FK_TblUrunHareketleri_TblUrun" FromRole="TblUrunHareketleri" ToRole="TblUrun" />
         </EntityType>
         <EntityType Name="TblUrunKategori">
           <Key>
@@ -584,6 +1418,42 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
           <Property Name="PazarId" Type="Int32" />
           <NavigationProperty Name="TblPazar" Relationship="DbOrganikUrunModel.FK_TblUrunPazar_TblPazar1" FromRole="TblUrunPazar" ToRole="TblPazar" />
           <NavigationProperty Name="TblUrun" Relationship="DbOrganikUrunModel.FK_TblUrunPazar_TblUrun1" FromRole="TblUrunPazar" ToRole="TblUrun" />
+        </EntityType>
+        <EntityType Name="TblUrunStock">
+          <Key>
+            <PropertyRef Name="StokId" />
+          </Key>
+          <Property Name="StokId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UrunId" Type="Int32" Nullable="false" />
+          <Property Name="BirimTipiId" Type="Int32" Nullable="false" />
+          <Property Name="Miktar" Type="Double" Nullable="false" />
+          <NavigationProperty Name="TblBirimTipleri" Relationship="DbOrganikUrunModel.FK_TblUrunStock_TblBirimTipleri" FromRole="TblUrunStock" ToRole="TblBirimTipleri" />
+          <NavigationProperty Name="TblUrun" Relationship="DbOrganikUrunModel.FK_TblUrunStock_TblUrun" FromRole="TblUrunStock" ToRole="TblUrun" />
+        </EntityType>
+        <EntityType Name="VwKategorikUrunler">
+          <Key>
+            <PropertyRef Name="UrunId" />
+            <PropertyRef Name="Fiyat" />
+            <PropertyRef Name="KdvOrani" />
+            <PropertyRef Name="UrunFiyatDovizId" />
+          </Key>
+          <Property Name="UrunId" Type="Int32" Nullable="false" />
+          <Property Name="UrunKategorisi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UrunAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsApproved" Type="Boolean" />
+          <Property Name="IsAtDiscount" Type="Boolean" />
+          <Property Name="IsExist" Type="Boolean" />
+          <Property Name="img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StokAdedi" Type="Int32" />
+          <Property Name="UrunNo" Type="Int32" />
+          <Property Name="Yol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Fiyat" Type="Double" Nullable="false" />
+          <Property Name="Indirim" Type="Boolean" />
+          <Property Name="KdvOrani" Type="Int32" Nullable="false" />
+          <Property Name="UrunFiyatDovizId" Type="Int32" Nullable="false" />
+          <Property Name="DovizCinsi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UrunKategoriAciklamasi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KategoriId" Type="Int32" />
         </EntityType>
         <EntityType Name="VwKisiKullaniciIletisim">
           <Key>
@@ -609,6 +1479,7 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
           <Property Name="KayıtVersiyonu" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="KullaniciId" Type="Int32" Nullable="false" />
           <Property Name="KullaniciAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mesaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Sifre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Guid" Type="Guid" />
           <Property Name="KayitTarihi" Type="DateTime" Precision="3" />
@@ -616,8 +1487,113 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
           <Property Name="AdreesTabloId" Type="Int32" Nullable="false" />
           <Property Name="Adres" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="AdresBasligi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Admin" Type="Boolean" />
         </EntityType>
-        <Association Name="FK_TblKisi_TblAdres">
+        <EntityType Name="VwKisiKullaniciRoller">
+          <Key>
+            <PropertyRef Name="KisiId" />
+            <PropertyRef Name="Ad" />
+            <PropertyRef Name="Soyad" />
+            <PropertyRef Name="Tc" />
+          </Key>
+          <Property Name="KisiId" Type="Int32" Nullable="false" />
+          <Property Name="AdresId" Type="Int32" />
+          <Property Name="Ad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Soyad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tc" Type="Int64" Nullable="false" />
+          <Property Name="DogumTarihi" Type="DateTime" Precision="0" />
+          <Property Name="Cinsiyet" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="KayıtTarihi" Type="DateTime" Precision="3" />
+          <Property Name="Aktif" Type="Boolean" />
+          <Property Name="Silik" Type="Boolean" />
+          <Property Name="KayıtVersiyonu" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="KullaniciId" Type="Int32" />
+          <Property Name="Guid" Type="Guid" />
+          <Property Name="KullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SonGirisTarihi" Type="DateTime" Precision="3" />
+          <Property Name="KayitTarihi" Type="DateTime" Precision="3" />
+          <Property Name="KayitVersiyonu" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Mesaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VwKisiUye">
+          <Key>
+            <PropertyRef Name="KisiId" />
+            <PropertyRef Name="Ad" />
+            <PropertyRef Name="Soyad" />
+            <PropertyRef Name="Tc" />
+            <PropertyRef Name="KullaniciAdi" />
+            <PropertyRef Name="Sifre" />
+          </Key>
+          <Property Name="KisiId" Type="Int32" Nullable="false" />
+          <Property Name="Ad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Soyad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DogumTarihi" Type="DateTime" Precision="0" />
+          <Property Name="Cinsiyet" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Tc" Type="Int64" Nullable="false" />
+          <Property Name="Silik" Type="Boolean" />
+          <Property Name="AdresId" Type="Int32" />
+          <Property Name="Aktif" Type="Boolean" />
+          <Property Name="KullaniciAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Guid" Type="Guid" />
+          <Property Name="SonGirisTarihi" Type="DateTime" Precision="3" />
+          <Property Name="Sifre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mesaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VwKullaniciRol">
+          <Key>
+            <PropertyRef Name="KullaniciAdi" />
+            <PropertyRef Name="KullaniciId" />
+            <PropertyRef Name="Sifre" />
+            <PropertyRef Name="KisiId" />
+            <PropertyRef Name="RolId" />
+          </Key>
+          <Property Name="KullaniciAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciId" Type="Int32" Nullable="false" />
+          <Property Name="Sifre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KisiId" Type="Int32" Nullable="false" />
+          <Property Name="Mesaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Silik" Type="Boolean" />
+          <Property Name="SonGirisTarihi" Type="DateTime" Precision="3" />
+          <Property Name="KayitVersiyonu" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Admin" Type="Boolean" />
+          <Property Name="Yetkili" Type="Boolean" />
+          <Property Name="RolId" Type="Int32" Nullable="false" />
+          <Property Name="Ayarlar" Type="Boolean" />
+          <Property Name="Siparis" Type="Boolean" />
+          <Property Name="Tahsilat" Type="Boolean" />
+          <Property Name="KullaniciTabloId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="VwSepetDetay">
+          <Key>
+            <PropertyRef Name="SepetDetayId" />
+            <PropertyRef Name="SepetId" />
+            <PropertyRef Name="UrunId" />
+            <PropertyRef Name="UrunEklemeTarihi" />
+            <PropertyRef Name="Adet" />
+            <PropertyRef Name="BirimFiyat" />
+            <PropertyRef Name="GuncelBirimFiyat" />
+            <PropertyRef Name="KdvOrani" />
+            <PropertyRef Name="GuncelKdvOrani" />
+            <PropertyRef Name="KuponId" />
+          </Key>
+          <Property Name="SepetDetayId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SepetId" Type="Int32" Nullable="false" />
+          <Property Name="UrunId" Type="Int32" Nullable="false" />
+          <Property Name="UrunEklemeTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Adet" Type="Int32" Nullable="false" />
+          <Property Name="BirimFiyat" Type="Double" Nullable="false" />
+          <Property Name="GuncelBirimFiyat" Type="Double" Nullable="false" />
+          <Property Name="KdvOrani" Type="Int32" Nullable="false" />
+          <Property Name="GuncelKdvOrani" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="GumcelDovizKuru" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="IndirimOrani" Type="Double" />
+          <Property Name="KuponId" Type="Int32" Nullable="false" />
+          <Property Name="Miktar" Type="Double" />
+          <Property Name="UrunAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AraToplam" Type="Double" />
+        </EntityType>
+        <Association Name="FK_TblKisi_TblAdres1">
           <End Type="DbOrganikUrunModel.TblAdres" Role="TblAdres" Multiplicity="0..1" />
           <End Type="DbOrganikUrunModel.TblKisi" Role="TblKisi" Multiplicity="*" />
           <ReferentialConstraint>
@@ -626,6 +1602,30 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
             </Principal>
             <Dependent Role="TblKisi">
               <PropertyRef Name="AdresId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblUrunStock_TblBirimTipleri">
+          <End Type="DbOrganikUrunModel.TblBirimTipleri" Role="TblBirimTipleri" Multiplicity="1" />
+          <End Type="DbOrganikUrunModel.TblUrunStock" Role="TblUrunStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblBirimTipleri">
+              <PropertyRef Name="BirimTipiId" />
+            </Principal>
+            <Dependent Role="TblUrunStock">
+              <PropertyRef Name="BirimTipiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblUrunFiyat_TblDoviz">
+          <End Type="DbOrganikUrunModel.TblDoviz" Role="TblDoviz" Multiplicity="1" />
+          <End Type="DbOrganikUrunModel.TblUrunFiyat" Role="TblUrunFiyat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblDoviz">
+              <PropertyRef Name="DovizId" />
+            </Principal>
+            <Dependent Role="TblUrunFiyat">
+              <PropertyRef Name="DovizId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -641,7 +1641,7 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TblKullanici_TblKisi">
+        <Association Name="FK_TblKullanici_TblKisi1">
           <End Type="DbOrganikUrunModel.TblKisi" Role="TblKisi" Multiplicity="1" />
           <End Type="DbOrganikUrunModel.TblKullanici" Role="TblKullanici" Multiplicity="*" />
           <ReferentialConstraint>
@@ -653,7 +1653,7 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TblSepet_TblKisi">
+        <Association Name="FK_TblSepet_TblKisi1">
           <End Type="DbOrganikUrunModel.TblKisi" Role="TblKisi" Multiplicity="0..1" />
           <End Type="DbOrganikUrunModel.TblSepet" Role="TblSepet" Multiplicity="*" />
           <ReferentialConstraint>
@@ -662,6 +1662,66 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
             </Principal>
             <Dependent Role="TblSepet">
               <PropertyRef Name="KisiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblKullaniciRol_TblKullanici">
+          <End Type="DbOrganikUrunModel.TblKullanici" Role="TblKullanici" Multiplicity="0..1" />
+          <End Type="DbOrganikUrunModel.TblKullaniciRol" Role="TblKullaniciRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblKullanici">
+              <PropertyRef Name="KullaniciId" />
+            </Principal>
+            <Dependent Role="TblKullaniciRol">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblSepetDetay_TblKupon">
+          <End Type="DbOrganikUrunModel.TblKupon" Role="TblKupon" Multiplicity="1" />
+          <End Type="DbOrganikUrunModel.TblSepetDetay" Role="TblSepetDetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblKupon">
+              <PropertyRef Name="KuponId" />
+            </Principal>
+            <Dependent Role="TblSepetDetay">
+              <PropertyRef Name="KuponId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblSepet_TblOdemeTipleri">
+          <End Type="DbOrganikUrunModel.TblOdemeTipleri" Role="TblOdemeTipleri" Multiplicity="0..1" />
+          <End Type="DbOrganikUrunModel.TblSepet" Role="TblSepet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblOdemeTipleri">
+              <PropertyRef Name="OdemeTipiId" />
+            </Principal>
+            <Dependent Role="TblSepet">
+              <PropertyRef Name="OdemeTipiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblOrderLines_TblOrder">
+          <End Type="DbOrganikUrunModel.TblOrder" Role="TblOrder" Multiplicity="0..1" />
+          <End Type="DbOrganikUrunModel.TblOrderLines" Role="TblOrderLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblOrder">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="TblOrderLines">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblOrderLines_TblUrun">
+          <End Type="DbOrganikUrunModel.TblUrun" Role="TblUrun" Multiplicity="0..1" />
+          <End Type="DbOrganikUrunModel.TblOrderLines" Role="TblOrderLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUrun">
+              <PropertyRef Name="UrunId" />
+            </Principal>
+            <Dependent Role="TblOrderLines">
+              <PropertyRef Name="UrunId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -677,7 +1737,7 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TblSepetDetay_TblSepet">
+        <Association Name="FK_TblSepetDetay_TblSepet1">
           <End Type="DbOrganikUrunModel.TblSepet" Role="TblSepet" Multiplicity="1" />
           <End Type="DbOrganikUrunModel.TblSepetDetay" Role="TblSepetDetay" Multiplicity="*" />
           <ReferentialConstraint>
@@ -686,6 +1746,42 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
             </Principal>
             <Dependent Role="TblSepetDetay">
               <PropertyRef Name="SepetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblUrunHareketleri_TblTeslimatDurumlari">
+          <End Type="DbOrganikUrunModel.TblTeslimatDurumlari" Role="TblTeslimatDurumlari" Multiplicity="0..1" />
+          <End Type="DbOrganikUrunModel.TblUrunHareketleri" Role="TblUrunHareketleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblTeslimatDurumlari">
+              <PropertyRef Name="DurumId" />
+            </Principal>
+            <Dependent Role="TblUrunHareketleri">
+              <PropertyRef Name="DurumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblUrunFiyat_TblUrun">
+          <End Type="DbOrganikUrunModel.TblUrun" Role="TblUrun" Multiplicity="1" />
+          <End Type="DbOrganikUrunModel.TblUrunFiyat" Role="TblUrunFiyat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUrun">
+              <PropertyRef Name="UrunId" />
+            </Principal>
+            <Dependent Role="TblUrunFiyat">
+              <PropertyRef Name="UrunId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblUrunHareketleri_TblUrun">
+          <End Type="DbOrganikUrunModel.TblUrun" Role="TblUrun" Multiplicity="1" />
+          <End Type="DbOrganikUrunModel.TblUrunHareketleri" Role="TblUrunHareketleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUrun">
+              <PropertyRef Name="UrunId" />
+            </Principal>
+            <Dependent Role="TblUrunHareketleri">
+              <PropertyRef Name="UrunId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -713,23 +1809,72 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
-      </Schema>
+        <Association Name="FK_TblUrunStock_TblUrun">
+          <End Type="DbOrganikUrunModel.TblUrun" Role="TblUrun" Multiplicity="1" />
+          <End Type="DbOrganikUrunModel.TblUrunStock" Role="TblUrunStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUrun">
+              <PropertyRef Name="UrunId" />
+            </Principal>
+            <Dependent Role="TblUrunStock">
+              <PropertyRef Name="UrunId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="VwSiparisDetayUrun">
+          <Key>
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="UrunId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="OrderNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderTotal" Type="Double" />
+          <Property Name="OrderDate" Type="DateTime" Precision="0" />
+          <Property Name="KullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdresBasligi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UlkeAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IlAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IlceAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SiparisDurumu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="UrunId" Type="Int32" Nullable="false" />
+          <Property Name="UrunAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DbOrganikUrunModelStoreContainer" CdmEntityContainer="DbOrganikUrunEntities">
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DbOrganikUrunModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DbOrganikUrunModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DbOrganikUrunModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DbOrganikUrunModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DbOrganikUrunModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DbOrganikUrunModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DbOrganikUrunModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DbOrganikUrunModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DbOrganikUrunModel.Store.sp_upgraddiagrams" />
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="DbOrganikUrunModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -753,9 +1898,27 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TblBirimTipleri">
+            <EntityTypeMapping TypeName="DbOrganikUrunModel.TblBirimTipleri">
+              <MappingFragment StoreEntitySet="TblBirimTipleri">
+                <ScalarProperty Name="BirimTipi" ColumnName="BirimTipi" />
+                <ScalarProperty Name="BirimTipiId" ColumnName="BirimTipiId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblDoviz">
+            <EntityTypeMapping TypeName="DbOrganikUrunModel.TblDoviz">
+              <MappingFragment StoreEntitySet="TblDoviz">
+                <ScalarProperty Name="DovizAdi" ColumnName="DovizAdi" />
+                <ScalarProperty Name="DovizId" ColumnName="DovizId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TblKategori">
             <EntityTypeMapping TypeName="DbOrganikUrunModel.TblKategori">
               <MappingFragment StoreEntitySet="TblKategori">
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="KategoriAciklamasi" ColumnName="KategoriAciklamasi" />
                 <ScalarProperty Name="KategoriAdi" ColumnName="KategoriAdi" />
                 <ScalarProperty Name="KategoriId" ColumnName="KategoriId" />
               </MappingFragment>
@@ -781,6 +1944,7 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
           <EntitySetMapping Name="TblKullanici">
             <EntityTypeMapping TypeName="DbOrganikUrunModel.TblKullanici">
               <MappingFragment StoreEntitySet="TblKullanici">
+                <ScalarProperty Name="Mesaj" ColumnName="Mesaj" />
                 <ScalarProperty Name="KayitVersiyonu" ColumnName="KayitVersiyonu" />
                 <ScalarProperty Name="Silik" ColumnName="Silik" />
                 <ScalarProperty Name="Aktif" ColumnName="Aktif" />
@@ -791,6 +1955,76 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
                 <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
                 <ScalarProperty Name="KisiId" ColumnName="KisiId" />
                 <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblKullaniciRol">
+            <EntityTypeMapping TypeName="DbOrganikUrunModel.TblKullaniciRol">
+              <MappingFragment StoreEntitySet="TblKullaniciRol">
+                <ScalarProperty Name="Yetkili" ColumnName="Yetkili" />
+                <ScalarProperty Name="Ayarlar" ColumnName="Ayarlar" />
+                <ScalarProperty Name="Siparis" ColumnName="Siparis" />
+                <ScalarProperty Name="Tahsilat" ColumnName="Tahsilat" />
+                <ScalarProperty Name="Raporlama" ColumnName="Raporlama" />
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+                <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblKupon">
+            <EntityTypeMapping TypeName="DbOrganikUrunModel.TblKupon">
+              <MappingFragment StoreEntitySet="TblKupon">
+                <ScalarProperty Name="Sepet" ColumnName="Sepet" />
+                <ScalarProperty Name="Urun" ColumnName="Urun" />
+                <ScalarProperty Name="MinimumAlisverisTutari" ColumnName="MinimumAlisverisTutari" />
+                <ScalarProperty Name="IndirimliFiyat" ColumnName="IndirimliFiyat" />
+                <ScalarProperty Name="IndirimOrani" ColumnName="IndirimOrani" />
+                <ScalarProperty Name="MaksimumYararlanmaSayisi" ColumnName="MaksimumYararlanmaSayisi" />
+                <ScalarProperty Name="Aktif" ColumnName="Aktif" />
+                <ScalarProperty Name="BitisTarihi" ColumnName="BitisTarihi" />
+                <ScalarProperty Name="BaslangicTarihi" ColumnName="BaslangicTarihi" />
+                <ScalarProperty Name="KuponKodu" ColumnName="KuponKodu" />
+                <ScalarProperty Name="KuponId" ColumnName="KuponId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblOdemeTipleri">
+            <EntityTypeMapping TypeName="DbOrganikUrunModel.TblOdemeTipleri">
+              <MappingFragment StoreEntitySet="TblOdemeTipleri">
+                <ScalarProperty Name="MaksimumLimit" ColumnName="MaksimumLimit" />
+                <ScalarProperty Name="MinimumLimit" ColumnName="MinimumLimit" />
+                <ScalarProperty Name="Aktif" ColumnName="Aktif" />
+                <ScalarProperty Name="OdemeTipiAdi" ColumnName="OdemeTipiAdi" />
+                <ScalarProperty Name="OdemeTipiId" ColumnName="OdemeTipiId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblOrder">
+            <EntityTypeMapping TypeName="DbOrganikUrunModel.TblOrder">
+              <MappingFragment StoreEntitySet="TblOrder">
+                <ScalarProperty Name="SiparisDurumu" ColumnName="SiparisDurumu" />
+                <ScalarProperty Name="IlceAdi" ColumnName="IlceAdi" />
+                <ScalarProperty Name="IlAdi" ColumnName="IlAdi" />
+                <ScalarProperty Name="UlkeAdi" ColumnName="UlkeAdi" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="AdresBasligi" ColumnName="AdresBasligi" />
+                <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderTotal" ColumnName="OrderTotal" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblOrderLines">
+            <EntityTypeMapping TypeName="DbOrganikUrunModel.TblOrderLines">
+              <MappingFragment StoreEntitySet="TblOrderLines">
+                <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -825,7 +2059,7 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
             <EntityTypeMapping TypeName="DbOrganikUrunModel.TblSepetDetay">
               <MappingFragment StoreEntitySet="TblSepetDetay">
                 <ScalarProperty Name="Miktar" ColumnName="Miktar" />
-                <ScalarProperty Name="KuponKodu" ColumnName="KuponKodu" />
+                <ScalarProperty Name="KuponId" ColumnName="KuponId" />
                 <ScalarProperty Name="IndirimOrani" ColumnName="IndirimOrani" />
                 <ScalarProperty Name="GumcelDovizKuru" ColumnName="GumcelDovizKuru" />
                 <ScalarProperty Name="GuncelKdvOrani" ColumnName="GuncelKdvOrani" />
@@ -840,13 +2074,60 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TblTeslimatDurumlari">
+            <EntityTypeMapping TypeName="DbOrganikUrunModel.TblTeslimatDurumlari">
+              <MappingFragment StoreEntitySet="TblTeslimatDurumlari">
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="DurumId" ColumnName="DurumId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TblUrun">
             <EntityTypeMapping TypeName="DbOrganikUrunModel.TblUrun">
               <MappingFragment StoreEntitySet="TblUrun">
+                <ScalarProperty Name="KategoriId" ColumnName="KategoriId" />
+                <ScalarProperty Name="Yol" ColumnName="Yol" />
+                <ScalarProperty Name="IsAtDiscount" ColumnName="IsAtDiscount" />
+                <ScalarProperty Name="IsExist" ColumnName="IsExist" />
+                <ScalarProperty Name="UrunNo" ColumnName="UrunNo" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="StokAdedi" ColumnName="StokAdedi" />
+                <ScalarProperty Name="img" ColumnName="img" />
                 <ScalarProperty Name="UrunFiyati" ColumnName="UrunFiyati" />
                 <ScalarProperty Name="UrunKategorisi" ColumnName="UrunKategorisi" />
                 <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
                 <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblUrunFiyat">
+            <EntityTypeMapping TypeName="DbOrganikUrunModel.TblUrunFiyat">
+              <MappingFragment StoreEntitySet="TblUrunFiyat">
+                <ScalarProperty Name="KdvOrani" ColumnName="KdvOrani" />
+                <ScalarProperty Name="Indirim" ColumnName="Indirim" />
+                <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+                <ScalarProperty Name="DovizId" ColumnName="DovizId" />
+                <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+                <ScalarProperty Name="FiyatId" ColumnName="FiyatId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblUrunHareketleri">
+            <EntityTypeMapping TypeName="DbOrganikUrunModel.TblUrunHareketleri">
+              <MappingFragment StoreEntitySet="TblUrunHareketleri">
+                <ScalarProperty Name="DovizKuru" ColumnName="DovizKuru" />
+                <ScalarProperty Name="BirimFiyati" ColumnName="BirimFiyati" />
+                <ScalarProperty Name="Miktar" ColumnName="Miktar" />
+                <ScalarProperty Name="HareketTarihi" ColumnName="HareketTarihi" />
+                <ScalarProperty Name="BirimTipiId" ColumnName="BirimTipiId" />
+                <ScalarProperty Name="HareketTipiId" ColumnName="HareketTipiId" />
+                <ScalarProperty Name="UyeId" ColumnName="UyeId" />
+                <ScalarProperty Name="DovizId" ColumnName="DovizId" />
+                <ScalarProperty Name="DurumId" ColumnName="DurumId" />
+                <ScalarProperty Name="KisiId" ColumnName="KisiId" />
+                <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+                <ScalarProperty Name="HareketId" ColumnName="HareketId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -868,9 +2149,43 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TblUrunStock">
+            <EntityTypeMapping TypeName="DbOrganikUrunModel.TblUrunStock">
+              <MappingFragment StoreEntitySet="TblUrunStock">
+                <ScalarProperty Name="Miktar" ColumnName="Miktar" />
+                <ScalarProperty Name="BirimTipiId" ColumnName="BirimTipiId" />
+                <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+                <ScalarProperty Name="StokId" ColumnName="StokId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VwKategorikUrunler">
+            <EntityTypeMapping TypeName="DbOrganikUrunModel.VwKategorikUrunler">
+              <MappingFragment StoreEntitySet="VwKategorikUrunler">
+                <ScalarProperty Name="KategoriId" ColumnName="KategoriId" />
+                <ScalarProperty Name="UrunKategoriAciklamasi" ColumnName="UrunKategoriAciklamasi" />
+                <ScalarProperty Name="DovizCinsi" ColumnName="DovizCinsi" />
+                <ScalarProperty Name="UrunFiyatDovizId" ColumnName="UrunFiyatDovizId" />
+                <ScalarProperty Name="KdvOrani" ColumnName="KdvOrani" />
+                <ScalarProperty Name="Indirim" ColumnName="Indirim" />
+                <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+                <ScalarProperty Name="Yol" ColumnName="Yol" />
+                <ScalarProperty Name="UrunNo" ColumnName="UrunNo" />
+                <ScalarProperty Name="StokAdedi" ColumnName="StokAdedi" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="IsExist" ColumnName="IsExist" />
+                <ScalarProperty Name="IsAtDiscount" ColumnName="IsAtDiscount" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+                <ScalarProperty Name="UrunKategorisi" ColumnName="UrunKategorisi" />
+                <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="VwKisiKullaniciIletisim">
             <EntityTypeMapping TypeName="DbOrganikUrunModel.VwKisiKullaniciIletisim">
               <MappingFragment StoreEntitySet="VwKisiKullaniciIletisim">
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
                 <ScalarProperty Name="AdresBasligi" ColumnName="AdresBasligi" />
                 <ScalarProperty Name="Adres" ColumnName="Adres" />
                 <ScalarProperty Name="AdreesTabloId" ColumnName="AdreesTabloId" />
@@ -878,6 +2193,7 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
                 <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
                 <ScalarProperty Name="Guid" ColumnName="Guid" />
                 <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="Mesaj" ColumnName="Mesaj" />
                 <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
                 <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
                 <ScalarProperty Name="KayıtVersiyonu" ColumnName="KayıtVersiyonu" />
@@ -894,31 +2210,117 @@ warning 6002: The table/view 'DbOrganikUrun.dbo.VwKisiKullaniciIletisim' does no
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DbOrganikUrunModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DbOrganikUrunModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DbOrganikUrunModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DbOrganikUrunModel.Store.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DbOrganikUrunModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DbOrganikUrunModel.Store.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DbOrganikUrunModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DbOrganikUrunModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DbOrganikUrunModel.Store.sp_upgraddiagrams" />
-        </EntityContainerMapping>
+          <EntitySetMapping Name="VwKisiKullaniciRoller">
+            <EntityTypeMapping TypeName="DbOrganikUrunModel.VwKisiKullaniciRoller">
+              <MappingFragment StoreEntitySet="VwKisiKullaniciRoller">
+                <ScalarProperty Name="Mesaj" ColumnName="Mesaj" />
+                <ScalarProperty Name="KayitVersiyonu" ColumnName="KayitVersiyonu" />
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="SonGirisTarihi" ColumnName="SonGirisTarihi" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+                <ScalarProperty Name="KayıtVersiyonu" ColumnName="KayıtVersiyonu" />
+                <ScalarProperty Name="Silik" ColumnName="Silik" />
+                <ScalarProperty Name="Aktif" ColumnName="Aktif" />
+                <ScalarProperty Name="KayıtTarihi" ColumnName="KayıtTarihi" />
+                <ScalarProperty Name="Cinsiyet" ColumnName="Cinsiyet" />
+                <ScalarProperty Name="DogumTarihi" ColumnName="DogumTarihi" />
+                <ScalarProperty Name="Tc" ColumnName="Tc" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="AdresId" ColumnName="AdresId" />
+                <ScalarProperty Name="KisiId" ColumnName="KisiId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VwKisiUye">
+            <EntityTypeMapping TypeName="DbOrganikUrunModel.VwKisiUye">
+              <MappingFragment StoreEntitySet="VwKisiUye">
+                <ScalarProperty Name="Mesaj" ColumnName="Mesaj" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="SonGirisTarihi" ColumnName="SonGirisTarihi" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+                <ScalarProperty Name="Aktif" ColumnName="Aktif" />
+                <ScalarProperty Name="AdresId" ColumnName="AdresId" />
+                <ScalarProperty Name="Silik" ColumnName="Silik" />
+                <ScalarProperty Name="Tc" ColumnName="Tc" />
+                <ScalarProperty Name="Cinsiyet" ColumnName="Cinsiyet" />
+                <ScalarProperty Name="DogumTarihi" ColumnName="DogumTarihi" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="KisiId" ColumnName="KisiId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VwKullaniciRol">
+            <EntityTypeMapping TypeName="DbOrganikUrunModel.VwKullaniciRol">
+              <MappingFragment StoreEntitySet="VwKullaniciRol">
+                <ScalarProperty Name="KullaniciTabloId" ColumnName="KullaniciTabloId" />
+                <ScalarProperty Name="Tahsilat" ColumnName="Tahsilat" />
+                <ScalarProperty Name="Siparis" ColumnName="Siparis" />
+                <ScalarProperty Name="Ayarlar" ColumnName="Ayarlar" />
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+                <ScalarProperty Name="Yetkili" ColumnName="Yetkili" />
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+                <ScalarProperty Name="KayitVersiyonu" ColumnName="KayitVersiyonu" />
+                <ScalarProperty Name="SonGirisTarihi" ColumnName="SonGirisTarihi" />
+                <ScalarProperty Name="Silik" ColumnName="Silik" />
+                <ScalarProperty Name="Mesaj" ColumnName="Mesaj" />
+                <ScalarProperty Name="KisiId" ColumnName="KisiId" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+                <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VwSepetDetay">
+            <EntityTypeMapping TypeName="DbOrganikUrunModel.VwSepetDetay">
+              <MappingFragment StoreEntitySet="VwSepetDetay">
+                <ScalarProperty Name="AraToplam" ColumnName="AraToplam" />
+                <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+                <ScalarProperty Name="Miktar" ColumnName="Miktar" />
+                <ScalarProperty Name="KuponId" ColumnName="KuponId" />
+                <ScalarProperty Name="IndirimOrani" ColumnName="IndirimOrani" />
+                <ScalarProperty Name="GumcelDovizKuru" ColumnName="GumcelDovizKuru" />
+                <ScalarProperty Name="GuncelKdvOrani" ColumnName="GuncelKdvOrani" />
+                <ScalarProperty Name="KdvOrani" ColumnName="KdvOrani" />
+                <ScalarProperty Name="GuncelBirimFiyat" ColumnName="GuncelBirimFiyat" />
+                <ScalarProperty Name="BirimFiyat" ColumnName="BirimFiyat" />
+                <ScalarProperty Name="Adet" ColumnName="Adet" />
+                <ScalarProperty Name="UrunEklemeTarihi" ColumnName="UrunEklemeTarihi" />
+                <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+                <ScalarProperty Name="SepetId" ColumnName="SepetId" />
+                <ScalarProperty Name="SepetDetayId" ColumnName="SepetDetayId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VwSiparisDetayUrun">
+            <EntityTypeMapping TypeName="DbOrganikUrunModel.VwSiparisDetayUrun">
+              <MappingFragment StoreEntitySet="VwSiparisDetayUrun">
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+                <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SiparisDurumu" ColumnName="SiparisDurumu" />
+                <ScalarProperty Name="IlceAdi" ColumnName="IlceAdi" />
+                <ScalarProperty Name="IlAdi" ColumnName="IlAdi" />
+                <ScalarProperty Name="UlkeAdi" ColumnName="UlkeAdi" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="AdresBasligi" ColumnName="AdresBasligi" />
+                <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderTotal" ColumnName="OrderTotal" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

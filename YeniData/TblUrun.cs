@@ -17,18 +17,39 @@ namespace YeniData
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TblUrun()
         {
+            this.TblOrderLines = new HashSet<TblOrderLines>();
+            this.TblUrunFiyat = new HashSet<TblUrunFiyat>();
+            this.TblUrunHareketleri = new HashSet<TblUrunHareketleri>();
             this.TblUrunKategori = new HashSet<TblUrunKategori>();
             this.TblUrunPazar = new HashSet<TblUrunPazar>();
+            this.TblUrunStock = new HashSet<TblUrunStock>();
         }
     
         public int UrunId { get; set; }
         public string UrunAdi { get; set; }
         public string UrunKategorisi { get; set; }
         public Nullable<double> UrunFiyati { get; set; }
+        public string img { get; set; }
+        public Nullable<int> StokAdedi { get; set; }
+        public Nullable<bool> IsApproved { get; set; }
+        public string Aciklama { get; set; }
+        public Nullable<int> UrunNo { get; set; }
+        public Nullable<bool> IsExist { get; set; }
+        public Nullable<bool> IsAtDiscount { get; set; }
+        public string Yol { get; set; }
+        public Nullable<int> KategoriId { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblOrderLines> TblOrderLines { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblUrunFiyat> TblUrunFiyat { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblUrunHareketleri> TblUrunHareketleri { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblUrunKategori> TblUrunKategori { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblUrunPazar> TblUrunPazar { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblUrunStock> TblUrunStock { get; set; }
     }
 }

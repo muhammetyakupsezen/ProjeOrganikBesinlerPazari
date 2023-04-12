@@ -10,6 +10,8 @@ namespace ProjeOrganikBesinlerPazari.Controllers
 {
     public class UrunController : Controller
     {
+        DbOrganikUrunEntities db = new DbOrganikUrunEntities();
+
         UrunIslemleri urunIslemleri;
         // GET: Urun
         public UrunController()
@@ -34,5 +36,36 @@ namespace ProjeOrganikBesinlerPazari.Controllers
 
         //    return Json(UrunListesi, JsonRequestBehavior.AllowGet);
         //}
+
+
+
+        //public ActionResult Update(TblUrun urun)
+        //{
+
+        //    TblUrun BulunanUrun = (from d in db.TblUrun where d.UrunId == urun.UrunId select d).SingleOrDefault();
+
+        //    if (BulunanUrun != null)
+        //    {
+        //        BulunanUrun.UrunAdi = urun.UrunAdi;
+        //        BulunanUrun.UrunNo = urun.UrunNo;
+        //        BulunanUrun.Aciklama = urun.Aciklama;
+        //        BulunanUrun.UrunFiyati = urun.UrunFiyati;
+        //        BulunanUrun.IsApproved = urun.IsApproved;
+        //        BulunanUrun.img = urun.img;
+        //        BulunanUrun.IsAtDiscount = urun.IsAtDiscount;
+        //        BulunanUrun.IsExist = urun.IsExist;
+        //        BulunanUrun.KategoriId = urun.KategoriId;
+        //        BulunanUrun.Yol = urun.Yol;
+        //        BulunanUrun.StokAdedi = urun.StokAdedi;
+        //        BulunanUrun.UrunKategorisi = urun.UrunKategorisi;
+        //        db.SaveChanges();
+        //    }
+
+
+        //    return View(BulunanUrun);
+        //}
+
+
+
     }
 }

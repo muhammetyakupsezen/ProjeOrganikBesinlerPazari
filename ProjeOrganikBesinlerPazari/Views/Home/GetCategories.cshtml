@@ -1,0 +1,41 @@
+﻿@model  IEnumerable<YeniData.TblKategori>
+
+
+
+@foreach (var item in Model)
+{
+    
+    <div class="col-lg-8 img-banner-w3 text-center">
+        <div class="csslider infinity" id="slider1">
+            <input type="radio" name="slides" checked="checked" id="slides_1" />
+            <input type="radio" name="slides" id="slides_2" />
+            <input type="radio" name="slides" id="slides_3" />
+            <input type="radio" name="slides" id="slides_4" />
+            <div class="banner_slide_bg"> 
+                
+
+
+
+                    <a href="~/Home/List/@item.KategoriId">
+                        <input style="margin-left: 42%; border-radius:6px;" class="btn button-style button-style-2 mt-sm-5 mt-4" type="button" name="name" value="@item.KategoriAdi" />
+
+                        <p style="margin-left: 40%; ">
+                            <img src="~/Upload/@item.img" alt="" class="img-fluid">
+                        </p>
+                    </a>
+                
+
+               
+              
+            </div>
+           
+        </div>
+    </div>
+   
+
+}
+<br />
+<br />
+<br />
+<br />
+<br />

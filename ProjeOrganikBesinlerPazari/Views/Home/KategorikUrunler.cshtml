@@ -1,0 +1,981 @@
+﻿@*@using ProjeOrganikBesinlerPazari.YeniData.TblUrun*@
+@*@model IEnumerable<ProjeOrganikBesinlerPazari.Controllers.HomeController>*@
+@model  IEnumerable<YeniData.TblUrun>
+
+
+@{
+    ViewBag.Title = "KategorikUrunler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+,
+
+
+
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <title>Organic Food Agriculture Category Bootstrap Responsive Web APP </title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="Organic Food Responsive web site, Organic Food Market, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+
+
+
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- //Meta tag Keywords -->
+    <!-- Custom-Files -->
+    <link rel="stylesheet" href="~/web/css/bootstrap.css">
+    <!-- Bootstrap-Core-CSS -->
+    <link href="~/web/css/css_slider.css" type="text/css" rel="stylesheet" media="all">
+    <!-- banner slider -->
+    <link rel="stylesheet" href="~/web/css/style.css" type="text/css" media="all" />
+    <!-- Style-CSS -->
+    <link href="~/web/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Font-Awesome-Icons-CSS -->
+    <!-- //Custom-Files -->
+    <!-- Web-Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Poiret+One&amp;subset=cyrillic,latin-ext" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Mada:200,300,400,500,600,700,900&amp;subset=arabic" rel="stylesheet">
+    <!-- //Web-Fonts -->
+</head>
+
+<body>
+    <script src="../../../../../../../m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+    <script>
+        (function () {
+            if (typeof _bsa !== 'undefined' && _bsa) {
+                // format, zoneKey, segment:value, options
+                _bsa.init('flexbar', 'CKYI627U', 'placement:w3layoutscom');
+            }
+        })();
+    </script>
+    <script>
+        (function () {
+            if (typeof _bsa !== 'undefined' && _bsa) {
+                // format, zoneKey, segment:value, options
+                _bsa.init('fancybar', 'CKYDL2JN', 'placement:demo');
+            }
+        })();
+    </script>
+    <script>
+        (function () {
+            if (typeof _bsa !== 'undefined' && _bsa) {
+                // format, zoneKey, segment:value, options
+                _bsa.init('stickybox', 'CKYI653J', 'placement:w3layoutscom');
+            }
+        })();
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src='https://www.googletagmanager.com/gtag/js?id=G-98H8KRKT85'></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-98H8KRKT85');
+    </script>
+
+    <meta name="robots" content="noindex">
+    @*<body>*@
+    <link rel="stylesheet" href="../../../../../../assests/css/font-awesome.min.css">
+    <!-- New toolbar-->
+    <style>
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+
+#w3lDemoBar.w3l-demo-bar {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  padding: 40px 5px;
+  padding-top:70px;
+  margin-bottom: 70px;
+  background: #0D1326;
+  border-top-left-radius: 9px;
+  border-bottom-left-radius: 9px;
+}
+
+#w3lDemoBar.w3l-demo-bar a {
+  display: block;
+  color: #e6ebff;
+  text-decoration: none;
+  line-height: 24px;
+  opacity: .6;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#w3lDemoBar.w3l-demo-bar span.w3l-icon {
+  display: block;
+}
+
+#w3lDemoBar.w3l-demo-bar a:hover {
+  opacity: 1;
+}
+
+#w3lDemoBar.w3l-demo-bar .w3l-icon svg {
+  color: #e6ebff;
+}
+#w3lDemoBar.w3l-demo-bar .responsive-icons {
+  margin-top: 30px;
+  border-top: 1px solid #41414d;
+  padding-top: 40px;
+}
+#w3lDemoBar.w3l-demo-bar .demo-btns {
+  border-top: 1px solid #41414d;
+  padding-top: 30px;
+}
+#w3lDemoBar.w3l-demo-bar .responsive-icons a span.fa {
+  font-size: 26px;
+}
+#w3lDemoBar.w3l-demo-bar .no-margin-bottom{
+  margin-bottom:0;
+}
+.toggle-right-sidebar span {
+  background: #0D1326;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: #e6ebff;
+  border-radius: 50px;
+  font-size: 26px;
+  cursor: pointer;
+  opacity: .5;
+}
+.pull-right {
+  float: right;
+  position: fixed;
+  right: 0px;
+  top: 70px;
+  width: 90px;
+  z-index: 99999;
+  text-align: center;
+}
+/* ============================================================
+RIGHT SIDEBAR SECTION
+============================================================ */
+
+#right-sidebar {
+  width: 90px;
+  position: fixed;
+  height: 100%;
+  z-index: 1000;
+  right: 0px;
+  top: 0;
+  margin-top: 60px;
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  overflow-y: auto;
+}
+
+
+/* ============================================================
+RIGHT SIDEBAR TOGGLE SECTION
+============================================================ */
+
+.hide-right-bar-notifications {
+  margin-right: -300px !important;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+
+
+@*@media (max-width: 992px) {
+  #w3lDemoBar.w3l-demo-bar a.desktop-mode{
+      display: none;
+
+  }
+}
+@media (max-width: 767px) {
+  #w3lDemoBar.w3l-demo-bar a.tablet-mode{
+      display: none;
+
+  }
+}
+@media (max-width: 568px) {
+  #w3lDemoBar.w3l-demo-bar a.mobile-mode{
+      display: none;
+  }*@
+  #w3lDemoBar.w3l-demo-bar .responsive-icons {
+      margin-top: 0px;
+      border-top: none;
+      padding-top: 0px;
+  }
+  #right-sidebar,.pull-right {
+      width: 90px;
+  }
+  #w3lDemoBar.w3l-demo-bar .no-margin-bottom-mobile{
+      margin-bottom: 0;
+  }
+}
+    </style>
+
+
+
+    </div>
+
+    <!-- main banner -->
+    <div class="main-top" id="home">
+        <!-- header -->
+        <header>
+            <!--<div class="container-fluid">
+            <div class="header d-md-flex justify-content-between align-items-center py-sm-4 py-3 px-xl-5 px-lg-3 px-2">-->
+            <!-- logo -->
+            <!--<div id="logo">
+                <h1><a class="" href="index.html">Organik Besinler </a></h1>
+            </div>-->
+            <!-- //logo -->
+            <!-- nav -->
+            <!--<div class="nav_w3ls">
+            <nav>
+                <label for="drop" class="toggle toogle-2">Menu</label>
+                <input type="checkbox" id="drop" />
+                <ul class="menu">
+
+                    <li class="active"><a href="#"> Giriş Yap &nbsp; </a></li>
+                    <li class="active"><a href="index.html"> Ana Sayfa</a></li>
+                    <li class="mx-lg-4 mx-md-3 my-md-0 my-2"><a href="about.html">Hakkımızda</a></li>
+                    <li><a href="gallery.html">Galeri</a></li>
+                    <li class="mx-lg-4 mx-md-3 my-md-0 my-2">-->
+            <!-- First Tier Drop Down -->
+            <!--<label for="drop-2" class="toggle">
+                                Dropdown <span class="fa fa-angle-down" aria-hidden="true"></span>
+                            </label>
+                            <a href="#">Menüler <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                            <input type="checkbox" id="drop-2" />
+                            <ul>
+                                <li><a href="#best" class="drop-text">Sağlıklı Ürünler</a></li>
+                                <li><a href="#about.html" class="drop-text">Üreticiler</a></li>
+                                <li><a href="#testi" class="drop-text">Yorumlar</a></li>
+                                <li><a href="#newsletter" class="drop-text">Bülten</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">İletişim</a></li>
+                    </ul>
+                </nav>
+            </div>-->
+            <!-- //nav -->
+            <!--</div>
+            </div>-->
+        </header>
+        <!-- //header -->
+        <!-- banner -->
+        <div class="main-w3pvt">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 style-banner">
+                        <div class="style-banner-inner">
+                            <h3 class="font-weight-bold text-uppercase">
+                                <span class="font-weight-normal">Organik </span>Besinler <span class="font-weight-normal">Sağlıklı </span>
+                                Yaşam
+                            </h3>
+                            <p class="mt-3">Organik Meyve Sebzeler</p>
+                            <a href="~/Home/Register" style="border-radius: 6px;" class="btn button-style mt-sm-5 mt-4">Üye Ol</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 img-banner-w3 text-center">
+                        <div class="csslider infinity" id="slider1">
+                            <input type="radio" name="slides" checked="checked" id="slides_1" />
+                            <input type="radio" name="slides" id="slides_2" />
+                            <input type="radio" name="slides" id="slides_3" />
+                            <input type="radio" name="slides" id="slides_4" />
+                            <ul class="banner_slide_bg">
+                                <li>
+                                    <img src="~/web/images/1.jpg" alt="" class="img-fluid">
+                                    <p style="padding-left: 49%; ">İçecekler</p><br />
+
+                                </li>
+                                <li>
+                                    <img src="~/web/images/2.jpg" alt="" class="img-fluid">
+                                    <p style="padding-left: 49%; ">Meyveler</p><br />
+
+                                </li>
+
+                                <li>
+                                    <img src="~/web/images/4.jpg" alt="" class="img-fluid">
+                                    <p style="padding-left: 49%; ">Sebzeler</p><br />
+
+                                </li>
+                                <li>
+                                    <img src="~/web/images/Sut2.jpg" alt="" class="img-fluid">
+                                    <p style="padding-left: 49%; ">Süt Ürünleri</p><br />
+
+                                </li>
+                            </ul>
+                            <div class="navigation">
+                                <div>
+                                    <label for="slides_1"></label>
+                                    <label for="slides_2"></label>
+                                    <label for="slides_3"></label>
+                                    <label for="slides_4"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //banner -->
+    </div>
+    <!-- //main -->
+    <!---728x90--->
+    <!-- about -->
+    <div class="about py-5">
+        <div class="container py-xl-5 py-lg-3">
+            <div class="welcome-left text-center py-md-5 py-sm-3">
+                <h3>Organik Besin Pazarı Sitemize Hoşgeldiniz</h3>
+
+                <a href="about.html" style="border-radius:6px;" class="btn button-style button-style-2 mt-sm-5 mt-4">Giriş Yap</a>
+            </div>
+        </div>
+
+        <div style="margin-left: 25px; ">
+
+            @*<div>
+                    <input id="txtUrunAdi" type="text"  /><br />
+                    <button   id="BtnGoster" class="btn btn-success w-50" type="button" onclick="UrunGoster();">Urun Gir</button>
+                </div>*@
+
+            <div>
+                <br />
+                <p>Ürün Id Giriniz</p>
+
+                <input type="text" id="UrunId" class="btn button-style button-style-2 mt-sm-5 mt-4" />
+                <input type="submit" id="BtnUrunListele" onclick='UrunListele()' class="btn button-style button-style-2 mt-sm-5 mt-4" value="Ara" />
+
+                <br />
+                <p>Ürün Adı : <strong id="TxtUrunAdi"></strong> </p>
+                <p>Ürün Fiyatı : <strong id="TxtUrunFiyati"></strong> TL</p>
+
+
+            </div>
+            <br />
+            @*<div>
+                    <p>Ürün Adı Giriniz</p>
+                    <br />
+                    <input type="text" id="UrunAdi" />
+                    <input type="submit" id="BtnAdaGoreUrunListele" onclick='AdaGoreUrunListele()' />
+
+                    <br />
+                    <p>Ürün Adı : <strong id="TxtUrunAdi"></strong> </p>
+                    <p>Ürün Fiyatı : <strong id="TxtUrunFiyati"></strong> </p>
+
+
+                </div>*@
+
+            <div id="TumUrunler">
+                <strong> <input type="submit" id="BtnTumUrunListele" onclick='TumUrunListele()' class="btn button-style button-style-2 mt-sm-5 mt-4" value="Tüm ürünleri Listele" /></strong>
+
+            </div>
+
+            @*<button id="BtnGoster" onclick="UrunGoster()" class="btn-success"> </button>*@
+
+            <br />
+
+            @*<div>
+
+                    Ürün Seçin:
+                    <select name="Urun" id="CbxUrun">
+                        <option id="" value=""> Seçiniz</option>
+                        <option id="CbxUrunId" value="LblUrunAdi"></option>
+
+                    </select>
+                    <input type="submit" value="Ürün Seç" id="BtnUrunSec" />
+
+                </div>*@
+
+        </div>
+    </div>
+    <!-- //about -->
+    <!---728x90--->
+    <!-- best food  -->
+
+    <div class="col-md-9">
+        @Html.Action("GetKategorikUrunler", "Home");
+    </div>
+
+    <section class="py-5 team-w3ls" id="best">
+        <div class="container py-xl-5 py-lg-3">
+            <div>
+                <h3 class="title-w3 pt-sm-6 mb-5 text-wh font-weight-bold">
+                    <br /> &nbsp;&nbsp;&nbsp;
+                    <span style=" padding-left:40%; text-align:center"></span>
+
+                    <span style="display:none;"> Sağlıkla asdadasd      </span>
+                    &nbsp;&nbsp; tüketebileceğiniz Organik Besinler
+
+                    @*<label id="LblUserDetailName"> </label>*@
+
+                    @*<label id="LblUserDetailName"> </label>*@
+                    @*<span style="border:1px solid black; border-radius:3px;"> <label id="LblUserDetailName"> asdasd </label>  </span>*@
+
+
+                </h3>
+                <div>
+                    @foreach (var Urun in Model)
+                    {
+
+                        @*<div class="d-flex team-w3ls-row pt-xl-5 pt-md-3">*@
+                        <div class="col-lg-4 col-sm-6">
+
+                            <div class="box20">
+                                <img src="~/Upload/@Urun.img" alt="" class="img-fluid" />
+                                <div class="box-content">
+
+                                    <a href="/Home/Details/@Urun.UrunId.ToString()">
+                                        <h3 class="title">@Urun.UrunAdi</h3>
+                                    </a>
+                                    <span class="post">Organik Meyveler</span>
+                                    @*<input style="margin-left: 42%; border-radius:6px;" class="btn button-style button-style-2 mt-sm-5 mt-4" type="button" name="name" id="BtnErikBilgileri" value="Ürün Bilgileri" onclick="ErikBilgileriGetir();" />*@
+                                    <br /> <label id="LblErikId"> UrunId: @Urun.UrunId  </label><br />
+
+                                    <label id="LblDonenUrunAdi"> Ürün Adı: @Urun.UrunAdi </label> <br />
+
+                                    <label id="LblDonenUrunFiyati"> Ürün Fiyatı: @Urun.UrunFiyati  </label><br />
+                                    <label id="LblDonenUrunStok"> Stok: @Urun.StokAdedi  </label>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        @*</div>*@
+
+
+
+
+                        @*<div>
+                                <p>Ürün Id Giriniz</p>
+
+
+                                <br />
+                                <p>Ürün Adı : <strong id="TxtUrunAdi"></strong> </p>
+                                <p>Ürün Fiyatı : <strong id="TxtUrunFiyatii"></strong>@Urun.UrunAdi </p>
+
+
+                            </div>*@
+                    }
+
+                </div>
+
+
+                @*<div>
+                        <input id="txtUrunAdi" type="text"  /><br />
+                        <button   id="BtnGoster" class="btn btn-success w-50" type="button" onclick="UrunGoster();">Urun Gir</button>
+                    </div>*@
+
+                <!--<div>
+                    <p>Ürün Id Giriniz</p>
+                    <br />
+                    <input type="text" id="UrunId" />
+                    <input type="submit" id="BtnUrunListele" onclick='UrunListele()' />
+
+                    <br />
+                    <p>Ürün Adı : <strong id="TxtUrunAdi"></strong> </p>
+                    <p>Ürün Fiyatı : <strong id="TxtUrunFiyati"></strong> </p>
+
+
+                </div>
+
+                <div>
+                    <p>Ürün Adı Giriniz</p>
+                    <br />
+                    <input type="text" id="UrunAdi" />
+                    <input type="submit" id="BtnAdaGoreUrunListele" onclick='AdaGoreUrunListele()' />
+
+                    <br />
+                    <p>Ürün Adı : <strong id="TxtUrunAdi"></strong> </p>
+                    <p>Ürün Fiyatı : <strong id="TxtUrunFiyati"></strong> </p>
+
+
+                </div>
+
+                <div id="TumUrunler">
+                    <input type="submit" id="BtnTumUrunListele" onclick='TumUrunListele()' value="Hepsini Getir" />
+
+                </div>-->
+                @*<button id="BtnGoster" onclick="UrunGoster()" class="btn-success"> </button>*@
+
+                <!--<br />
+
+                <div>
+
+                        Ürün Seçin:
+                        <select name="Urun" id="CbxUrun" >
+                            <option id="" value=""> Seçiniz</option>
+                            <option id="CbxUrunId" value="LblUrunAdi"></option>
+
+                        </select>
+                        <input type="submit" value="Ürün Seç" id="BtnUrunSec" />
+
+                </div>-->
+
+            </div>
+            @*<div class="d-flex team-w3ls-row pt-xl-5 pt-md-3">
+
+
+
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="box20">
+                            <img src="~/web/images/d1.jpg" alt="" class="img-fluid" />
+                            <div class="box-content">
+                                <h3 class="title">Erik</h3>
+                                <span class="post">Organik Meyveler</span>
+                                <input style="margin-left: 42%; border-radius:6px;" class="btn button-style button-style-2 mt-sm-5 mt-4" type="button" name="name" id="BtnErikBilgileri" value="Ürün Bilgileri" onclick="ErikBilgileriGetir();" />
+                                <label id="LblErikAdi"> Urun Adı: </label><br />
+                                <label id="LblErikFiyati"> Ürün Fiyatı:  </label><br />
+                                <label id="LblErikKategorisi"> Ürün Fiyatı:  </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 my-sm-0 my-4">
+                        <div class="box20 active">
+                            <img src="~/web/images/d6.jpg" alt="" class="img-fluid" />
+                            <div class="box-content active">
+                                <h3 class="title">Limon</h3>
+                                <span class="post">Organik meyve</span>
+                                <input style="margin-left: 42%; border-radius:6px;" class="btn button-style button-style-2 mt-sm-5 mt-4" type="button" name="name" id="BtnLimonBilgileri" value="Ürün Bilgileri" onclick="LimonBilgileriGetir();" />
+                                <label id="LblLimonAdi"> Urun Adı: </label><br />
+                                <label id="LblLimonFiyati"> Ürün Fiyatı:  </label><br />
+                                <label id="LblLimonKategorisi"> Ürün Fiyatı:  </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mt-lg-0 mt-sm-4 mx-auto">
+                        <div class="box20">
+                            <img src="~/web/images/d5.jpg" alt="" class="img-fluid" />
+                            <div class="box-content">
+                                <h3 class="title">Ahududu Suyu</h3>
+                                <span class="post">Organik İçecek</span>
+                                <input style="margin-left: 42%; border-radius:6px;" class="btn button-style button-style-2 mt-sm-5 mt-4" type="button" name="name" id="BtnAhududuBilgileri" value="Ürün Bilgileri" onclick="AhududuBilgileriGetir();" />
+                                <label id="LblAhududuAdi"> Urun Adı: </label><br />
+                                <label id="LblAhududuFiyati"> Ürün Fiyatı:  </label><br />
+                                <label id="LblAhududuKategorisi"> Ürün Fiyatı:  </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                    <div class="d-flex team-w3ls-row pt-lg-5 mt-lg-0 mt-4">
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="box20">
+                                <img src="~/web/images/d4.jpg" alt="" class="img-fluid" />
+                                <div class="box-content">
+                                    <h3 class="title">Elma</h3>
+                                    <span class="post">organik meyveler</span>
+                                    <input style="margin-left: 42%; border-radius:6px;" class="btn button-style button-style-2 mt-sm-5 mt-4" type="button" name="name" id="BtnElmaBilgileri" value="Ürün Bilgileri" onclick="ElmaBilgileriGetir();" />
+                                    <label id="LblElmaAdi"> Urun Adı: </label><br />
+                                    <label id="LblElmaFiyati"> Ürün Fiyatı:  </label><br />
+                                    <label id="LblElmaKategorisi"> Ürün Kategorisi:  </label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 mt-sm-0 mt-4">
+                            <div class="box20">
+                                <img src="~/web/images/d3.jpg" alt="" class="img-fluid" />
+                                <div class="box-content">
+                                    <h3 class="title">Üzüm</h3>
+                                    <span class="post">Organik Meyveler</span>
+                                    <input style="margin-left: 42%; border-radius:6px;" class="btn button-style button-style-2 mt-sm-5 mt-4" type="button" name="name" id="BtnUzumBilgileri" value="Ürün Bilgileri" onclick="UzumBilgileriGetir();" />
+                                    <label id="LblUzumAdi"> Urun Adı: </label><br />
+                                    <label id="LblUzumFiyati"> Ürün Fiyatı:  </label><br />
+                                    <label id="LblUzumKategorisi"> Ürün Kategorisi:  </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 mt-lg-0 mt-4 mx-auto">
+                            <div class="box20">
+                                <img src="~/web/images/d2.jpg" alt="" class="img-fluid" />
+                                <div class="box-content">
+                                    <h3 class="title">Havuç</h3>
+                                    <span class="post">Organik Sebze</span>
+                                    <input style="margin-left: 42%; border-radius:6px;" class="btn button-style button-style-2 mt-sm-5 mt-4" type="button" name="name" id="BtnHavucBilgileri" value="Ürün Bilgileri" onclick="HavucBilgileriGetir();" />
+                                    <label id="LblHavucAdi"> Urun Adı: </label><br />
+                                    <label id="LblHavucFiyati"> Ürün Fiyatı:  </label><br />
+                                    <label id="LblHavucKategorisi"> Ürün Kategorisi:  </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>*@
+        </div>
+    </section>
+
+
+
+    <!--<section class="py-5 team-w3ls" id="best">
+        <div class="container py-xl-5 py-lg-3">
+            <div>
+                <h3 class="title-w3 pt-sm-6 mb-5 text-wh font-weight-bold">
+                    <br /> &nbsp;&nbsp;&nbsp;
+                    <span style="margin-top:25%; padding-left:40%; text-align:center"></span>
+
+                    <span style="display:none;"> Sağlıkla asdadasd      </span>
+                    &nbsp;&nbsp; tüketebileceğiniz Organik Besinler-->
+    @*<label id="LblUserDetailName"> </label>*@
+
+    @*<label id="LblUserDetailName"> </label>*@
+    @*<span style="border:1px solid black; border-radius:3px;"> <label id="LblUserDetailName"> asdasd </label>  </span>*@
+
+
+    <!--</h3>-->
+    @*<div>
+            <input id="txtUrunAdi" type="text"  /><br />
+            <button   id="BtnGoster" class="btn btn-success w-50" type="button" onclick="UrunGoster();">Urun Gir</button>
+        </div>*@
+
+    <!--<!--<div>
+        <p>Ürün Id Giriniz</p>
+        <br />
+        <input type="text" id="UrunId" />
+        <input type="submit" id="BtnUrunListele" onclick='UrunListele()' />
+
+        <br />
+        <p>Ürün Adı : <strong id="TxtUrunAdi"></strong> </p>
+        <p>Ürün Fiyatı : <strong id="TxtUrunFiyati"></strong> </p>
+
+
+    </div>
+
+    <div>
+        <p>Ürün Adı Giriniz</p>
+        <br />
+        <input type="text" id="UrunAdi" />
+        <input type="submit" id="BtnAdaGoreUrunListele" onclick='AdaGoreUrunListele()' />
+
+        <br />
+        <p>Ürün Adı : <strong id="TxtUrunAdi"></strong> </p>
+        <p>Ürün Fiyatı : <strong id="TxtUrunFiyati"></strong> </p>
+
+
+    </div>
+
+    <div id="TumUrunler">
+        <input type="submit" id="BtnTumUrunListele" onclick='TumUrunListele()' value="Hepsini Getir" />
+
+    </div>-->
+    -->
+    <!--@*<button id="BtnGoster" onclick="UrunGoster()" class="btn-success"> </button>*@-->
+    <!--<br />
+
+    <div>
+
+            Ürün Seçin:
+            <select name="Urun" id="CbxUrun" >
+                <option id="" value=""> Seçiniz</option>
+                <option id="CbxUrunId" value="LblUrunAdi"></option>
+
+            </select>
+            <input type="submit" value="Ürün Seç" id="BtnUrunSec" />
+
+    </div>-->
+    <!--</div>
+            <div class="d-flex team-w3ls-row pt-xl-5 pt-md-3">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="box20">
+                        <img src="~/web/images/d1.jpg" alt="" class="img-fluid" />
+                        <div class="box-content">
+                            <h3 class="title">Erik</h3>
+                            <span class="post">Organik Meyveler</span>
+                            <input style="margin-left: 42%; border-radius:6px;" class="btn button-style button-style-2 mt-sm-5 mt-4" type="button" name="name" id="BtnErikBilgileri" value="Ürün Bilgileri" onclick="ErikBilgileriGetir();" />
+                            <label id="LblErikAdi"> Urun Adı: </label><br />
+                            <label id="LblErikFiyati"> Ürün Fiyatı:  </label><br />
+                            <label id="LblErikKategorisi"> Ürün Fiyatı:  </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 my-sm-0 my-4">
+                    <div class="box20 active">
+                        <img src="~/web/images/d6.jpg" alt="" class="img-fluid" />
+                        <div class="box-content active">
+                            <h3 class="title">Limon</h3>
+                            <span class="post">Organik meyve</span>
+                            <input style="margin-left: 42%; border-radius:6px;" class="btn button-style button-style-2 mt-sm-5 mt-4" type="button" name="name" id="BtnLimonBilgileri" value="Ürün Bilgileri" onclick="LimonBilgileriGetir();" />
+                            <label id="LblLimonAdi"> Urun Adı: </label><br />
+                            <label id="LblLimonFiyati"> Ürün Fiyatı:  </label><br />
+                            <label id="LblLimonKategorisi"> Ürün Fiyatı:  </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 mt-lg-0 mt-sm-4 mx-auto">
+                    <div class="box20">
+                        <img src="~/web/images/d5.jpg" alt="" class="img-fluid" />
+                        <div class="box-content">
+                            <h3 class="title">Ahududu Suyu</h3>
+                            <span class="post">Organik İçecek</span>
+                            <input style="margin-left: 42%; border-radius:6px;" class="btn button-style button-style-2 mt-sm-5 mt-4" type="button" name="name" id="BtnAhududuBilgileri" value="Ürün Bilgileri" onclick="AhududuBilgileriGetir();" />
+                            <label id="LblAhududuAdi"> Urun Adı: </label><br />
+                            <label id="LblAhududuFiyati"> Ürün Fiyatı:  </label><br />
+                            <label id="LblAhududuKategorisi"> Ürün Fiyatı:  </label>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <div class="d-flex team-w3ls-row pt-lg-5 mt-lg-0 mt-4">
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="box20">
+                            <img src="~/web/images/d4.jpg" alt="" class="img-fluid" />
+                            <div class="box-content">
+                                <h3 class="title">Elma</h3>
+                                <span class="post">organik meyveler</span>
+                                <input style="margin-left: 42%; border-radius:6px;" class="btn button-style button-style-2 mt-sm-5 mt-4" type="button" name="name" id="BtnElmaBilgileri" value="Ürün Bilgileri" onclick="ElmaBilgileriGetir();" />
+                                <label id="LblElmaAdi"> Urun Adı: </label><br />
+                                <label id="LblElmaFiyati"> Ürün Fiyatı:  </label><br />
+                                <label id="LblElmaKategorisi"> Ürün Kategorisi:  </label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mt-sm-0 mt-4">
+                        <div class="box20">
+                            <img src="~/web/images/d3.jpg" alt="" class="img-fluid" />
+                            <div class="box-content">
+                                <h3 class="title">Üzüm</h3>
+                                <span class="post">Organik Meyveler</span>
+                                <input style="margin-left: 42%; border-radius:6px;" class="btn button-style button-style-2 mt-sm-5 mt-4" type="button" name="name" id="BtnUzumBilgileri" value="Ürün Bilgileri" onclick="UzumBilgileriGetir();" />
+                                <label id="LblUzumAdi"> Urun Adı: </label><br />
+                                <label id="LblUzumFiyati"> Ürün Fiyatı:  </label><br />
+                                <label id="LblUzumKategorisi"> Ürün Kategorisi:  </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mt-lg-0 mt-4 mx-auto">
+                        <div class="box20">
+                            <img src="~/web/images/d2.jpg" alt="" class="img-fluid" />
+                            <div class="box-content">
+                                <h3 class="title">Havuç</h3>
+                                <span class="post">Organik Sebze</span>
+                                <input style="margin-left: 42%; border-radius:6px;" class="btn button-style button-style-2 mt-sm-5 mt-4" type="button" name="name" id="BtnHavucBilgileri" value="Ürün Bilgileri" onclick="HavucBilgileriGetir();" />
+                                <label id="LblHavucAdi"> Urun Adı: </label><br />
+                                <label id="LblHavucFiyati"> Ürün Fiyatı:  </label><br />
+                                <label id="LblHavucKategorisi"> Ürün Kategorisi:  </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </section>-->
+    <!-- //best food  -->
+    <!---728x90--->
+    <!-- middle -->
+    <section class="what-w3ls">
+        <div class="container-fluid py-xl-5 py-lg-3">
+            <div class="offset-xl-7 offset-lg-6 offset-md-4 offset-sm-2">
+                <div class="grids-whtas pr-xl-5">
+                    <h3 class="tittle text-wh mb-5 font-weight-bold">Organik meyve, sebze ve İçecekler </h3>
+                    <p class="lead text-li">
+                        @*@if (Model != null)
+                            {
+                                foreach (var m in Model)
+                                {
+                                    @m.Index()
+                                    <br />
+
+
+                                }
+                            }*@
+
+                    </p>
+                    <hr class="my-4">
+
+                    <a href="about.html" class="btn button-style mt-sm-5 mt-4">Daha Fazla</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //middle -->
+    <!-- testimonials -->
+    <div class="testimonials py-5" id="testi">
+        <div class="container py-xl-5 py-lg-3">
+            <h3 class="title-w3 mb-5 text-wh font-weight-bold">
+                Müşterilerimizin Görüşleri
+                <span>Mükemmel Geri Dönüşler</span>
+            </h3>
+            <div class="carousel-inner">
+                <div class="row">
+                    <div class="col-lg-6 w3_testimonials_grid">
+                        <div class="bg-wh p-sm-5 p-4">
+                            <p class="sub-test-w3ls">
+                                Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
+                                impedit quo minus id quod possimus, omnis voluptas.
+                            </p>
+                            <div class="row mt-5">
+                                <div class="col-3 testi-img-res">
+                                    <img src="~/web/images/te1.jpg" alt=" " class="img-fluid" />
+                                </div>
+                                <div class="col-9 w3_testi_grid mt-xl-3 mt-lg-2 mt-md-4 mt-2">
+                                    <h5 class="mb-2">Thomas Carl</h5>
+                                    <p>Sed do eiusmod</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 w3_testimonials_grid mt-lg-0 mt-4">
+                        <div class="bg-wh p-sm-5 p-4">
+                            <p class="sub-test-w3ls">
+                                Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
+                                impedit quo minus id quod possimus, omnis voluptas.
+                            </p>
+                            <div class="row mt-5">
+                                <div class="col-3 testi-img-res">
+                                    <img src="~/web/images/te2.jpg" alt=" " class="img-fluid" />
+                                </div>
+                                <div class="col-9 w3_testi_grid  mt-xl-3 mt-lg-2 mt-md-4 mt-2">
+                                    <h5 class="mb-2">Adam Ster</h5>
+                                    <p>Sed do eiusmod</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //testimonials -->
+    <!-- slides images -->
+    <div class="slide-imaes">
+
+    </div>
+    <!-- //slides images -->
+    <!-- footer -->
+    <!--<footer class="py-5">
+    <div class="container pt-xl-5 pt-lg-3">-->
+    <!-- newsletter -->
+    <!--<div class="newsletter_right_w3w3pvt-lau pb-md-5 pb-3" id="newsletter">
+        <h2 class="tittle text-wh mb-5 font-weight-bold">Subscribe Newsletter</h2>
+        <div class="n-right-w3ls pt-3">
+            <form action="#" method="post">
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <input class="form-control" type="text" name="Name" placeholder="Name" required="">
+                    </div>
+                    <div class="col-md-4 form-group px-md-0">
+                        <input class="form-control" type="email" name="Email" placeholder="Email Address" required="">
+                    </div>
+                    <div class="col-md-4 form-group mt-md-0 mt-3">
+                        <button class="form-control btn text-uppercase" type="submit">Subscribe</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>-->
+    <!-- //newsletter -->
+    <!-- footer bottom -->
+    <!--<div class="row pt-xl-5 pt-lg-3">-->
+    <!-- button -->
+    <!--<div class="col-lg-5 col-md-7 w3l-footer mt-lg-3 text-md-left text-center">
+        <ul class="list-unstyled footer-nav-wthree">
+            <li class="mr-4">
+                <a href="index.html" class="active">Home</a>
+            </li>
+            <li class="mr-4">
+                <a class="" href="about.html">About Us</a>
+            </li>
+            <li class="mr-4">
+                <a class="" href="gallery.html">Gallery</a>
+            </li>
+            <li>
+                <a class="" href="contact.html">Contact Us</a>
+            </li>
+        </ul>
+    </div>-->
+    <!-- //button -->
+    <!-- social icons -->
+    <!--<div class="col-lg-7 col-md-5 w3social-icons text-md-right text-center mt-md-0 mt-3">
+        <ul>
+            <li>
+                <a href="#" class="rounded-circle">
+                    <i class="fa fa-facebook-f"></i>
+                </a>
+            </li>
+            <li class="px-2">
+                <a href="#" class="rounded-circle">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="rounded-circle">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        </ul>
+    </div>-->
+    <!-- //social icons -->
+    <!--</div>-->
+    <!-- //footer bottom -->
+    <!-- copyright -->
+    <!--<div class="row pt-lg-4 pt-3 text-md-left text-center">
+        <p class="col-xl-7 col-lg-8 copy-right-grids mt-lg-1">
+            © 2019 Organic Food. All Rights Reserved | Design by
+
+
+
+        <a href="https://w3layouts.com/" target="_blank">W3layouts</a>
+        </p>
+        <div class="col-xl-5 col-lg-4 text-center mt-lg-0 mt-4">
+            <a href="#home" class="move-top"></a>
+        </div>
+    </div>-->
+    <!-- //copyright -->
+    <!--</div>
+    </footer>-->
+    <!-- //footer -->
+    <script src="~/assets/js/sweetalert2.min.js"></script>
+    <script src="~/Scripts/Js/Js/Ajax.js"></script>
+    <script src="~/Scripts/Js/Js/MyJs.js"></script>
+    <script src="~/Scripts/Proje/MainJs.js"></script>
+
+    <script src="~/Scripts/Js/Js/JavaScript.js"></script>
+    @*<script>GetUserDetails();</script>*@
+
+</body>
+
+
+<!-- Mirrored from demo.w3layouts.com/demos_new/template_demo/31-12-2018/organic_food-demo_Free/1671851217/web/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 05 Mar 2023 15:33:28 GMT -->
+</html>
+
+

@@ -11,7 +11,10 @@ namespace RestFulWebAPI.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-
+            var t = Session["Token"];
+            t = Session["Login"];
+            t = Session["KisiId"];
+            t = Session["KisiAdi"];
             return View();
         }
     }

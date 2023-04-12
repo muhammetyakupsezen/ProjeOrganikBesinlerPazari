@@ -25,7 +25,12 @@ namespace ProjeOrganikBesinlerPazari
         {
             Session["Token"] = "";
             Session["Login"] = false;
-           
+            Session["KisiId"] = "";
+            Session["KisiAdi"] = "";
+            Session["Kisi"] = "";
+
+
+
 
         }
 

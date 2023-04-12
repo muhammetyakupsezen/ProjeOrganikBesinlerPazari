@@ -5,26 +5,54 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="a26b887991ed40789e7923aa58b65a9b" Name="Diagram1">
-        <EntityTypeShape EntityType="DbOrganikUrunModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="7.75" />
-        <EntityTypeShape EntityType="DbOrganikUrunModel.TblAdres" Width="1.5" PointX="0.75" PointY="3.875" />
-        <EntityTypeShape EntityType="DbOrganikUrunModel.TblKategori" Width="1.5" PointX="7.75" PointY="11.625" />
-        <EntityTypeShape EntityType="DbOrganikUrunModel.TblKisi" Width="1.5" PointX="3" PointY="3.125" />
-        <EntityTypeShape EntityType="DbOrganikUrunModel.TblKullanici" Width="1.5" PointX="5.25" PointY="5.625" />
-        <EntityTypeShape EntityType="DbOrganikUrunModel.TblPazar" Width="1.5" PointX="7.75" PointY="14.25" />
-        <EntityTypeShape EntityType="DbOrganikUrunModel.TblSepet" Width="1.5" PointX="5.25" PointY="1.5" />
-        <EntityTypeShape EntityType="DbOrganikUrunModel.TblSepetDetay" Width="1.5" PointX="7.5" PointY="1.25" />
-        <EntityTypeShape EntityType="DbOrganikUrunModel.TblUrun" Width="1.5" PointX="7.75" PointY="7.375" />
-        <EntityTypeShape EntityType="DbOrganikUrunModel.TblUrunKategori" Width="1.5" PointX="10" PointY="4.375" />
-        <EntityTypeShape EntityType="DbOrganikUrunModel.TblUrunPazar" Width="1.5" PointX="10" PointY="7.375" />
-        <EntityTypeShape EntityType="DbOrganikUrunModel.VwKisiKullaniciIletisim" Width="1.5" PointX="2.75" PointY="9.75" />
-        <AssociationConnector Association="DbOrganikUrunModel.FK_TblKisi_TblAdres" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblAdres" Width="1.5" PointX="8.75" PointY="4.625" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblBirimTipleri" Width="1.5" PointX="3.75" PointY="21.75" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblDoviz" Width="1.5" PointX="0.75" PointY="17.75" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblKategori" Width="1.5" PointX="3.75" PointY="18.5" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblKisi" Width="1.5" PointX="11" PointY="4" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblKullanici" Width="1.5" PointX="13.25" PointY="8.125" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblKullaniciRol" Width="1.5" PointX="15.5" PointY="8.5" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblKupon" Width="1.5" PointX="13.25" PointY="13.125" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblOdemeTipleri" Width="1.5" PointX="11" PointY="0.75" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblOrder" Width="1.5" PointX="3.75" PointY="2" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblOrderLines" Width="1.5" PointX="6" PointY="7.375" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblPazar" Width="1.5" PointX="0.75" PointY="5.375" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblSepet" Width="1.5" PointX="13.25" PointY="3.125" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblSepetDetay" Width="1.5" PointX="15.5" PointY="2.875" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblTeslimatDurumlari" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblUrun" Width="1.5" PointX="0.75" PointY="9.25" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblUrunFiyat" Width="1.5" PointX="3" PointY="14.25" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblUrunHareketleri" Width="1.5" PointX="3" PointY="9.625" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblUrunKategori" Width="1.5" PointX="6" PointY="10.5" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblUrunPazar" Width="1.5" PointX="3" PointY="6.5" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.TblUrunStock" Width="1.5" PointX="6" PointY="13.5" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.VwKategorikUrunler" Width="1.5" PointX="5.75" PointY="1.25" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.VwKisiKullaniciIletisim" Width="1.5" PointX="8.75" PointY="9.25" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.VwKisiKullaniciRoller" Width="1.5" PointX="8.75" PointY="15.25" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.VwKisiUye" Width="1.5" PointX="15.75" PointY="12.25" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.VwKullaniciRol" Width="1.5" PointX="5.75" PointY="17.25" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.VwSepetDetay" Width="1.5" PointX="10.75" PointY="17.25" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblKisi_TblAdres1" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblUrunStock_TblBirimTipleri" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblUrunFiyat_TblDoviz" />
         <AssociationConnector Association="DbOrganikUrunModel.FK_TblUrunKategori_TblKategori" />
-        <AssociationConnector Association="DbOrganikUrunModel.FK_TblKullanici_TblKisi" />
-        <AssociationConnector Association="DbOrganikUrunModel.FK_TblSepet_TblKisi" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblKullanici_TblKisi1" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblSepet_TblKisi1" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblKullaniciRol_TblKullanici" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblSepetDetay_TblKupon" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblSepet_TblOdemeTipleri" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblOrderLines_TblOrder" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblOrderLines_TblUrun" />
         <AssociationConnector Association="DbOrganikUrunModel.FK_TblUrunPazar_TblPazar1" />
-        <AssociationConnector Association="DbOrganikUrunModel.FK_TblSepetDetay_TblSepet" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblSepetDetay_TblSepet1" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblUrunHareketleri_TblTeslimatDurumlari" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblUrunFiyat_TblUrun" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblUrunHareketleri_TblUrun" />
         <AssociationConnector Association="DbOrganikUrunModel.FK_TblUrunKategori_TblUrun" />
         <AssociationConnector Association="DbOrganikUrunModel.FK_TblUrunPazar_TblUrun1" />
+        <AssociationConnector Association="DbOrganikUrunModel.FK_TblUrunStock_TblUrun" />
+        <EntityTypeShape EntityType="DbOrganikUrunModel.VwSiparisDetayUrun" Width="1.5" PointX="15.375" PointY="16.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

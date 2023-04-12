@@ -20,9 +20,9 @@ namespace ProjeOrganikBesinlerPazari
             );
 
             routes.MapRoute(
-              name: "IndexPanel",
+              name: "SepetDetay",
               url: "{controller}/{action}/{id}",
-              defaults: new { controller = "Home", action = "IndexPanel", id = UrlParameter.Optional }
+              defaults: new { controller = "Home", action = "SepetDetay", id = UrlParameter.Optional }
           );
 
             // routes.MapRoute(

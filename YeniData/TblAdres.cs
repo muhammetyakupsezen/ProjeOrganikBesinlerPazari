@@ -21,9 +21,9 @@ namespace YeniData
         }
     
         public int AdresId { get; set; }
-        public int UlkeAdi { get; set; }
-        public int IlAdi { get; set; }
-        public int IlceAdi { get; set; }
+        public string UlkeAdi { get; set; }
+        public string IlAdi { get; set; }
+        public string IlceAdi { get; set; }
         public string AdresBasligi { get; set; }
         public string Adres { get; set; }
     
